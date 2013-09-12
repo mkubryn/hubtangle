@@ -8,7 +8,7 @@
 		</div>
 
 		<div class="excerpt">
-			<a href="single.html" class="post-heading">Turystyczna piosenka</a>
+			<a href="single.html" class="post-heading">Turist song</a>
 			<!-- jplayer -->
 			<script type="text/javascript">
 								//<![CDATA[

@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 
 import com.sun.xml.internal.ws.transport.http.client.HttpResponseProperties;
+import static net.hubtangle.helpers.ParamsHelper.*;
 
 import net.hubtangle.entry.Hub;
 
@@ -15,14 +16,13 @@ class HubController {
 	 * Handles show particular {@link Hub} requests
 	 */
 	def showHub() {
-		def hubId = params["hubId"]
-		def hub = Hub.get(hubId)
+		def hub = Hub.get(params.hubId)
 		
 		[hub: hub]
 	}
 	
 	def createPostEntry() {
-		println "Create post entry in hub with id " + params["hubId"]
+		println "Create post entry in hub with id " + params.hubId
 	}
 	
 	def saveHub() {

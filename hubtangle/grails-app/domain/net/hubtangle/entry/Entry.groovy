@@ -43,8 +43,8 @@ abstract class Entry implements Comparable<Entry> {
 	static belongsTo = [author: User, hub: Hub]
 	
 	static constraints = {
-		description nullable:true 
-		title nullable:true //FIXME - remove this
+		description (nullable: true, size: 0..1024 )
+		title (nullable: true) //FIXME - title shuldn't be nullable
     }
 	
 	static mapping = {

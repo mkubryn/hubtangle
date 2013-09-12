@@ -189,7 +189,7 @@ header .wrapper #home-slider {
   padding-top: 40px;
 }
 body.home #main {
-  padding-top: 120px;
+  padding-top: 60px;
 }
 /* HEADLINE ----------------------------------------------------*/#headline {
   margin-bottom: 20px;
@@ -700,4 +700,11 @@ footer h6 {
 .footer-bottom .right {
   width: 50%;
   float: right;
+}
+
+/* custom */
+
+
+#createPostRespone {
+	color: red;
 }

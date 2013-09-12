@@ -103,7 +103,7 @@
 		<div id="main">
 			<div class="wrapper cf">
 			
-			<div>
+			<div style="padding-top: 60px;">
 				<h3>Recent activity on your hubs ${hubMap.size()} + e: ${lastEntries.size()}</h3>
 				<p/>
 			</div>

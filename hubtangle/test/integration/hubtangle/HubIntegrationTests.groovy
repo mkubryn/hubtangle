@@ -58,12 +58,12 @@ class HubIntegrationTests {
 	}	
 	
 	def getTestUser() {
-		def user1 = User.findByNick("Marcin")
+		def user1 = User.findByUsername("Marcin")
 		if(user1) {
 			return user1
 		}
 		
-		user1 = new User(nick: "Marcin")
+		user1 = new User(username: "Marcin")
 		assertNotNull "Test user not saved", user1.save()
 		user1
 	}

@@ -21,7 +21,7 @@
 
 		<div class="meta">
 			<span class="format">Image</span> <span class="user"><a
-				href="#">By ${entry.author.nick}, </a></span> <span class="comments">28
+				href="#">By ${entry.author.username}, </a></span> <span class="comments">28
 				comments</span> <span class="tags"><a href="#">tag1</a>, <a
 				href="#">tag2</a></span>
 		</div>

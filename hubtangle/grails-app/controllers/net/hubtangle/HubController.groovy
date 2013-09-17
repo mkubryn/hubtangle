@@ -1,5 +1,7 @@
 package net.hubtangle
 
+import grails.plugins.springsecurity.Secured;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,14 +17,16 @@ class HubController {
 	/**
 	 * Handles show particular {@link Hub} requests
 	 */
+	@Secured(['IS_AUTHENTICATED_REMEMBERED'])
 	def showHub() {
 		def hub = Hub.get(params.hubId)
 		
+		if(!hub) {
+			response.sendError(HttpServletResponse.SC_NOT_FOUND)
+			return
+		}
+		
 		[hub: hub]
-	}
-	
-	def createPostEntry() {
-		println "Create post entry in hub with id " + params.hubId
 	}
 	
 	def saveHub() {

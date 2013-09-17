@@ -7,12 +7,7 @@ package net.hubtangle
  */
 class User {
 
-	/**
-	 * User's nickname
-	 */
-	String nick
-	
-	
+	String username
 	
     static constraints = {
     }

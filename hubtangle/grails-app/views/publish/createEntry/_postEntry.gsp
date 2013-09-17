@@ -1,4 +1,4 @@
-<h3><p><g:message code="publish.entry.post.prepare"/></p></h3>
+<h3><g:message code="publish.entry.post.prepare"/></h3>
 <!-- form -->
 
 <div id="createPostRespone">
@@ -17,6 +17,4 @@
 
 		<input type="submit" value="Submit">
 </g:formRemote>
-
-
 <!-- ENDS form -->

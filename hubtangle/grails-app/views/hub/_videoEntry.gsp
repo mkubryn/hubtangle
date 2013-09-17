@@ -15,7 +15,7 @@
 
 		<div class="meta">
 			<span class="format">Video</span> <span class="user"><a
-				href="#">By ${entry.author.nick}, </a></span> <span class="comments">16 comments</span>
+				href="#">By ${entry.author.username}, </a></span> <span class="comments">16 comments</span>
 			<span class="tags"><a href="#">red</a>, <a href="#">cyan</a>,
 				<a href="#">white</a>, <a href="#">blue</a></span>
 		</div>

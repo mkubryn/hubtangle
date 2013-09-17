@@ -17,7 +17,7 @@
 
 		<div class="meta">
 			<span class="format">Quote</span> <span class="user"><a
-				href="#">By ${entry.author.nick}, </a></span> <span class="comments">999+
+				href="#">By ${entry.author.username}, </a></span> <span class="comments">999+
 				comments</span> <span class="tags"><a href="#">red</a>, <a
 				href="#">blue</a></span>
 		</div>

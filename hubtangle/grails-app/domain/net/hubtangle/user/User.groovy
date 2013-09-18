@@ -1,4 +1,4 @@
-package net.hubtangle
+package net.hubtangle.user
 
 /**
  * Represents an user in the Hubtangle network.

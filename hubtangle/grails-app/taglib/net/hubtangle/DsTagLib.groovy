@@ -32,7 +32,8 @@ class DsTagLib {
 			<img src='${downloadUrl}' />'
 		"""
 		
-		sb.toString()
+		//sb.toString() //FIXME mock
+		"<img src='http://localhost:8080/hubtangle/img/test/rnd/" + (new Random().next(8) % 5) + ".jpg' />"
 	}
 	
 	

@@ -3,6 +3,11 @@ package net.hubtangle
 import net.hubtable.*;
 import net.hubtangle.entry.Hub;
 
+/**
+ * Controller managing home pages
+ *
+ * @author mkubryn
+ */
 class HomeController {
 
     def index() {
@@ -12,7 +17,7 @@ class HomeController {
 		
 		def lastEntries = getRecentEntries(hubMap)
 		
-		[hubMap: hubMap, lastEntries: lastEntries]
+		render(view: "homepage", model: [hubMap: hubMap, lastEntries: lastEntries])
 	}
 	
 	private getRecentEntries(hubMap) {

@@ -1,6 +1,6 @@
 package net.hubtangle.entry
 
-import net.hubtangle.User;
+import net.hubtangle.user.User;
 
 /**
  * 

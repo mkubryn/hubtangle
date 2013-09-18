@@ -1,7 +1,8 @@
 package net.hubtangle.entry
 
 /**
- * Represents an hub entry linking to a remote content in the web such as external webpage
+ * Represents a hub entry linking to a remote content in the web such as an external web page
+ * 
  * @author mkubryn
  *
  */

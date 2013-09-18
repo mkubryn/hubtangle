@@ -1,13 +1,18 @@
 package net.hubtangle
 
+import grails.plugins.springsecurity.Secured;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 
 import org.codehaus.groovy.grails.plugins.i18n.I18nGrailsPlugin;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 import net.hubtangle.entry.Hub;
 import net.hubtangle.entry.PostEntry;
+import net.hubtangle.user.User;
+import net.hubtangle.utils.ControllerUtils;
 
 import static net.hubtangle.helpers.ParamsHelper.*;
 
@@ -18,45 +23,54 @@ import static net.hubtangle.helpers.ParamsHelper.*;
  */
 class PublishController {
 
+	def log = LoggerFactory.getLogger(PublishController.class)
+	
+	def springSecurityService
 	def messageSource
 	def hubService
 	
     def entry() { 
-		println "publishing entry on hub " + params['hub']
-	}
-	
-	def hub() { }
-	
-	/**
-	 * Handles {@link PostEntry} creation requests
-	 * @return
-	 */
-	def createPostEntry() {
-		def hubId = asLong(params.id)
+		def hubId = asLong(params.hub)
 		
 		// requestor has no right to post on this hub
 		if(!hubService.canPostOnHub(hubId)) {
 			response.sendError(HttpServletResponse.SC_FORBIDDEN)
 			return
 		}
-
-		// preprare post		
+		
+		render (view: "prepareEntry", model: [])
+	}
+	
+	def hub() {
+		println "publishing entry on hub " + params['hub']
+	}
+	
+	/**
+	 * Handles {@link PostEntry} creation requests, then creates and persists new {@link PostEntry}
+	 * @return
+	 */
+	@Secured(['ROLE_USER'])
+	def createPostEntry() {
+		def hubId = asLong(params.id)
+		
+		// prepare post		
 		def newEntry = new PostEntry(title: params['title'], 
 			description: params['description'])
 		
-		// FIXME : get currently authenticated user as post author!
-		newEntry.author = User.get(1l)
+		newEntry.author = springSecurityService.getCurrentUser().id
 		newEntry.hub = Hub.get(hubId)
 		
 		// validate post
 		if(!newEntry.validate()) {
 			// TODO: human readable validation errors
-			render(view: 'validationErrors', model: [entry: newEntry])
+			render(view: 'validationErrors', model: [prepareEntry: newEntry])
 			return
 		}
 		
 		newEntry.save()
-		render "OK!"
+		
+		// render redirect tag on user's page
+		render ControllerUtils.createJsRedirector("/hubtangle/hub/${newEntry.hub.id}#${newEntry.id}")
 	}
 	
 	/**

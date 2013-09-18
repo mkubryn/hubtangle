@@ -8,40 +8,14 @@
 </head>
 	<body class="blog">
 	
-		<!-- HEADER -->
 		<header>
 			<div class="wrapper cf">
-				
-				<div id="logo">
-					<a href="../home"><img  src="${resource(dir: 'img', file: 'logo.png')}" alt="Simpler"></a>
-				</div>
 
-				<!-- nav -->
-				<ul id="nav" class="sf-menu">
-					<li><a href="/hubtangle/home"><span>HOME</span></a></li>
-					<li><a href="blog.html">HUB</a></li>
-					<li><a href="page.html">ABOUT</a>
-						<ul>
-							<li><a href="page-elements.html">Elements</a></li>
-							<li><a href="page-icons.html">Icons</a></li>
-							<li><a href="page-typography.html">Typography</a></li>
-						</ul>
-					</li>
-					<li><a href="portfolio.html">WORK</a></li>
-					<li><a href="contact.html">CONTACT</a></li>
-					<li class="loginButton">
-						<sec:ifNotLoggedIn>
-							<g:link controller="login" action="auth">Login</g:link>
-						</sec:ifNotLoggedIn> <sec:ifAllGranted roles="ROLE_USER">
-							<g:link controller="logout">Logout</g:link>
-						</sec:ifAllGranted>
-					</li>
-				</ul>
-				<div id="combo-holder"></div>
-				<!-- ends nav -->
+				<layout:include template="logo" />
+				<layout:include template="navigation" />
+
 			</div>
 		</header>
-		<!-- ENDS HEADER -->
 		
 		<!-- MAIN -->
 		<div id="main">

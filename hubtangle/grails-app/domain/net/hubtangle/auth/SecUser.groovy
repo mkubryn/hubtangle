@@ -1,7 +1,11 @@
 package net.hubtangle.auth
 
-import net.hubtangle.User;
+import net.hubtangle.user.User;
 
+/**
+ * Represents user in security context.
+ * @author mkubryn
+ */
 class SecUser extends User {
 
 	transient springSecurityService

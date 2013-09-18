@@ -42,6 +42,8 @@ grails.project.dependency.resolution = {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
 
         // runtime 'mysql:mysql-connector-java:5.1.22'
+		runtime "org.slf4j:slf4j-simple:1.7.5"
+		runtime "ch.qos.logback:logback-core:1.0.13"
     }
 
     plugins {

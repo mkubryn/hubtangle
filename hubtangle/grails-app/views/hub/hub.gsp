@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>${hub.name }</title>
+	<title>${hub.name}</title>
     <meta name="layout" content="main"/>
     <r:require modules="application"/>
 	<r:layoutResources />
@@ -10,33 +10,8 @@
 		<header>
 			<div class="wrapper cf">
 				
-				<div id="logo">
-					<a href="../home"><img  src="${resource(dir: 'img', file: 'logo.png')}" alt="Simpler"></a>
-				</div>
-				
-				<!-- nav -->
-				<ul id="nav" class="sf-menu">
-					<li><a href="/hubtangle/home"><span>HOME</span></a></li>
-					<li class="current-menu-item"><a href="blog.html">HUB</a></li>
-					<li><a href="page.html">ABOUT</a>
-						<ul>
-							<li><a href="page-elements.html">Elements</a></li>
-							<li><a href="page-icons.html">Icons</a></li>
-							<li><a href="page-typography.html">Typography</a></li>
-						</ul>
-					</li>
-					<li><a href="portfolio.html">WORK</a></li>
-					<li><a href="contact.html">CONTACT</a></li>
-					<li class="loginButton">
-						<sec:ifNotLoggedIn>
-							<g:link controller="login" action="auth">Login</g:link>
-						</sec:ifNotLoggedIn> <sec:ifAllGranted roles="ROLE_USER">
-							<g:link controller="logout">Logout</g:link>
-						</sec:ifAllGranted>
-					</li>
-				</ul>
-				<div id="combo-holder"></div>
-				<!-- ends nav -->
+				<layout:include template="logo" />
+				<layout:include template="navigation" />
 
 			</div>
 		</header>
@@ -53,14 +28,6 @@
 	        		<g:each in="${hub.entries}" var="e">
 		        		<g:render template="${e.getRenderTemplateName()}" bean="${e}" var="entry" />
 	        		</g:each>
-	        		
-	        		<%--
-	        			<g:render template="linkEntry" collection="${hub.entries}" var="entry"></g:render>
-	        			<g:render template="quoteEntry" collection="${hub.entries}" var="entry"></g:render>
-		        		<g:render template="imageEntry" collection="${hub.entries}" var="entry"></g:render>
-		        		<g:render template="videoEntry" collection="${hub.entries}" var="entry"></g:render>
-	        			<g:render template="postEntry" collection="${hub.entries}" var="entry"></g:render>
-	        		--%>
 					
 					<!-- page-navigation -->
 					<div class="page-navigation cf">
@@ -74,15 +41,27 @@
         		<!-- ENDS posts list -->
 			
 				<!-- sidebar -->
-        	<aside id="sidebar">
-        		
+        		<aside id="sidebar">
         		<ul>
 	        		<li class="block">
-	        		
-	        			<a href="/hubtangle/publish/entry?hub=${hub.id}">
-	        				<h4><img alt="createpost" src="${resource(dir: 'img', file: 'mono-icons/linedpaperplus32.png')}">  Post new entry</h4>
-	        			</a>
-	        			
+		        		<sec:ifAllGranted roles="ROLE_USER">
+	        				<div class="hubFeatureButton">
+			        			<a href="/hubtangle/publish/entry?hub=${hub.id}">
+				        			<img alt="createpost" src="${resource(dir: 'img', file: 'mono-icons/linedpaperplus32.png')}"/> 
+									Add new entry
+			        			</a>
+	        				</div>
+						</sec:ifAllGranted>
+						<div class="hubFeatureButton">
+			        		<a href="#">
+				        		<img alt="subscribeRss" src="${resource(dir: 'img', file: 'mono-icons/rss32.png')}"/> 
+								Subscribe RSS
+			        		</a>
+	        			</div>
+	        			<h4></h4>
+	        		</li>
+
+	        		<li class="block">
 		        		<h4>${hub.name }</h4>
 						${hub.description }
 	        		</li>

@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat
 
 import javax.persistence.Transient;
 
-import net.hubtangle.User;
+import net.hubtangle.user.User;
 
 /**
  * Represents an abstract entry. Entries belong to hubs
@@ -77,7 +77,7 @@ abstract class Entry implements Comparable<Entry> {
 
 	@Override
 	public int compareTo(Entry o) {
-		return entryIsEarlierThan(o)
+		return -1 * entryIsEarlierThan(o)
 	}
 	
 	/**

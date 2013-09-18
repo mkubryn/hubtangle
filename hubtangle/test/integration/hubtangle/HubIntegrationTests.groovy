@@ -3,6 +3,7 @@ import net.hubtangle.*;
 import net.hubtangle.entry.Entry;
 import net.hubtangle.entry.Hub;
 import net.hubtangle.entry.LinkEntry;
+import net.hubtangle.user.User;
 
 import static org.junit.Assert.*
 import org.junit.*

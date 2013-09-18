@@ -3,7 +3,7 @@ class UrlMappings {
 	static mappings = {
 
 		"/hub/$hubId" (controller: "hub") {
-			action = [GET: "showHub", POST: "saveHub", PUT: "updateHub", DELETE: "deleteHub"]
+			action = [GET: "hub", POST: "saveHub", PUT: "updateHub", DELETE: "deleteHub"]
 		}
 		
 		"/hub/$hubId/$action" (controller: "hub") {

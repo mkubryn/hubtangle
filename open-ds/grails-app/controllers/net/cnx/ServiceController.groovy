@@ -7,12 +7,12 @@ import static net.cnx.ParamsHelper.*
 class ServiceController {
 
 	/*
-	 * FIXME move DS_FILESTORE_DIR it to conf
+	 * TODO move DS_FILESTORE_DIR it to conf
 	 */
 	def DS_FILESTORE_DIR = "/home/mkubryn/devel/hubtangle-eclipse-ws/ds_filestore"
 	
 	/*
-	 * FIXME remove clearFileStore method
+	 * TODO remove clearFileStore method
 	 */
 	def clearFileStore() {
 		
@@ -29,7 +29,6 @@ class ServiceController {
 	}
     
 	def download() {
-		
 		def param = params['fid']
 		
 		/*
@@ -37,7 +36,7 @@ class ServiceController {
 		 */
 		if(param && param.startsWith(".")) {
 			/*
-			 * FIXME remove finding files by filename in production! 
+			 * TODO remove finding files by filename in production! 
 			 */
 			def fileName = param.substring(1)
 			def dsFile = DsFile.findByName(fileName)

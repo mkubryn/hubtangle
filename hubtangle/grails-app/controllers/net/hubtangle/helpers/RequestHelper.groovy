@@ -1,6 +1,8 @@
 package net.hubtangle.helpers
 
-class ParamsHelper {
+import org.codehaus.groovy.grails.web.pages.discovery.GrailsConventionGroovyPageLocator;
+
+class RequestHelper {
 	
 	static def asLong(value) {
 		try {

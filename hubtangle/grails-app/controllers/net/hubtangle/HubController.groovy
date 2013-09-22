@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 
 import com.sun.xml.internal.ws.transport.http.client.HttpResponseProperties;
-import static net.hubtangle.helpers.ParamsHelper.*;
+import static net.hubtangle.helpers.RequestHelper.*;
 
 import net.hubtangle.entry.Hub;
 import org.slf4j.Logger;

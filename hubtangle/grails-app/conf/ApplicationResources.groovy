@@ -35,6 +35,7 @@ modules = {
 		resource url: 'js/tweet/jquery.tweet.js', disposition: 'head'
 	}
 	
+	
     application {
 		dependsOn 'tabs', 'social'
 		resource url: 'js/lof-slider.js', disposition: 'head'

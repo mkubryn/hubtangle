@@ -7,6 +7,11 @@ package net.hubtangle.entry
  */
 class PostEntry extends Entry {
 	
+	/**
+	 * Content of this post
+	 */
+	String content
+	
     static constraints = {
     }
 

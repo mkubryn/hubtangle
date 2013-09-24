@@ -1,7 +1,6 @@
 <!doctype html>
 <html class="no-js">
 	<head>
-		<title>Hubtangle - your entry point</title>
 		<meta charset="utf-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
 		
@@ -21,7 +20,7 @@
 		<r:layoutResources />
 	</head>
 
-		<body class="home">
+		<body class="${pageProperty( name:'body.class' )}">
 			<g:layoutBody />
 			<r:layoutResources />
 		</body>

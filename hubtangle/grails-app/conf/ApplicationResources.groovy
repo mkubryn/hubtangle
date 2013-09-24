@@ -19,6 +19,8 @@ modules = {
 		
 		resource url: 'css/superfish.css', disposition: 'head'
 		resource url: 'js/superfish-1.4.8/js/hoverIntent.js', disposition: 'head'
+		
+		resource url: 'js/moveform.js', disposition: 'head'
 	}
 	
 	tabs {
@@ -34,7 +36,6 @@ modules = {
 		resource url: 'css/jquery.tweet.css', disposition: 'head'
 		resource url: 'js/tweet/jquery.tweet.js', disposition: 'head'
 	}
-	
 	
     application {
 		dependsOn 'tabs', 'social'

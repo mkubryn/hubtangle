@@ -44,14 +44,14 @@
         		<aside id="sidebar">
         		<ul>
 	        		<li class="block">
-		        		<sec:ifAllGranted roles="ROLE_USER">
+						<sec:ifUserCanPostOnHub hubId="${hub.id}">
 	        				<div class="hubFeatureButton">
 			        			<a href="/hubtangle/publish/entry?hub=${hub.id}">
 				        			<img alt="createpost" src="${resource(dir: 'img', file: 'mono-icons/linedpaperplus32.png')}"/> 
 									Add new entry
 			        			</a>
 	        				</div>
-						</sec:ifAllGranted>
+						</sec:ifUserCanPostOnHub>
 						<div class="hubFeatureButton">
 			        		<a href="#">
 				        		<img alt="subscribeRss" src="${resource(dir: 'img', file: 'mono-icons/rss32.png')}"/> 

@@ -39,7 +39,7 @@ class EntryMappingTest {
 		assertEquals("Not matching title", entry.url, props.url)
 	}
 	
-	@Test
+	@Test 
 	public void mapLinkEntry() {
 		def props = [type: 'link', title: 'Title', description: 'Desc', url: 'href']
 		

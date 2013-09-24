@@ -25,8 +25,6 @@ import static javax.servlet.http.HttpServletResponse.*;
  */
 class PublishController {
 
-	def log = LoggerFactory.getLogger(PublishController.class)
-	
 	def springSecurityService
 	def messageSource
 	def hubService
@@ -83,15 +81,16 @@ class PublishController {
 		try {
 			newEntry = hubService.createAndSaveEntry(params, hubId)
 		} catch (IllegalArgumentException e) {
-			render "ERROR " + e.getMessage()
+			log.warn("Entry publish request was invalid.", e)
+			response.sendError(SC_BAD_REQUEST)
 			return
 		} catch (AccessDeniedException e) {
-			render "ACCESS IS DENIED " + e.getMessage()
+			log.warn("[SECURITY] Access denied while publishing entry.", e)
+			response.sendError(SC_FORBIDDEN)
 			return
 		} catch (ModelValidationException e) {
 		
-		e.printStackTrace() //TODO rm me
-		
+			log.info("Validation exception while publishing entry.", e)
 			/*
 			 * Validation went wrong - render validation errors
 			 */

@@ -13,7 +13,7 @@
 		</div>
 
 		<div class="excerpt">
-			<a href="single.html" class="post-heading">${entry.title }</a>
+			<a href="${request.contextPath}/article/${entry.id}" class="post-heading">${entry.title }</a>
 			<p>${entry.description }</p>
 
 			<p>

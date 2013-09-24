@@ -82,4 +82,16 @@ class HubService {
 		
 		return hub.creator.id.equals(currentUser.id)
 	}
+	
+	/**
+	 * Checks if currently authenticated user can see {@link Entry} of provided id.
+	 * @param entryId entry identifier
+	 * @return true or false
+	 */
+	def canViewEntry(entryId) {
+		/*
+		 * TODO implement view entry permission logics
+		 */
+		Entry.get(entryId) != null
+	}
 }

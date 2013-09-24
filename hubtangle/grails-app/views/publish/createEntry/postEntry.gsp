@@ -37,15 +37,19 @@
 						<label for="title" ><g:message code="publish.entry.post.title"/></label>
 						<input name="title"  id="title" type="text" class="form-poshytip" title="Enter title" />
 					</p>
-					
+
 					<p>
 						<label for="description"><g:message code="publish.entry.post.description"/> </label>
-						<textarea name="description" id="description" rows="5" cols="20" class="form-poshytip" title="Enter description"></textarea>
+						<input name="description" id="description" class="form-poshytip" title="Enter description"></input>
+					</p>
+					
+					<p>
+						<label for="content"><g:message code="publish.entry.post.content"/> </label>
+						<textarea name="content" id="content" rows="5" cols="20" class="form-poshytip" title="Enter content"></textarea>
 					</p>
 			
-					<input type="submit" value="Submit" onsubmit="submitTinymceForm()">
+					<input type="submit" value="Submit" onclick="submitForm()"/>
 				</g:formRemote>
-				
 				
 				</div>
 		</div>

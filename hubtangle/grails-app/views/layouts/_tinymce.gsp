@@ -14,3 +14,10 @@ tinymce.init({
 });
 
 </script>
+
+<script>
+function submitForm() {
+	tinymce.triggerSave();
+	document.forms[0].submit();
+}
+</script>

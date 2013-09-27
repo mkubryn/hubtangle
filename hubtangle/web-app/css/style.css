@@ -789,6 +789,16 @@ footer h6 {
 	font-size: medium;
 }
 
+#flashMessage {
+	background-color: #777571;
+	border-color: white;
+	border: medium;
+	color: white;
+	position: fixed;
+    top: 1em;
+    
+}
+
 /* HOMEPAGE styles*/
 #recentActivityLabel {
 	font-family: 'Voltaire', sans-serif;
@@ -801,11 +811,37 @@ footer h6 {
 	padding-top: 20px;	
 }
 
-#publishForm input{
-	
-}
 #createPostRespone {
 	color: red;
+}
+
+.entryMenuTable input {
+	display: none;
+}
+
+.entryMenuTable td {
+	font-family: 'Voltaire', sans-serif;
+	font-size: 20px;
+	width: 150px;	
+	padding-top: 30px;
+}
+
+.entryMenuTable td:HOVER {
+	color: black;
+}
+
+.entryMenuTable th {
+	font-family: 'Voltaire', sans-serif;
+	font-size: 30px;
+	padding-top: 30px;
+}
+
+.continueButton {
+	cursor: pointer;
+}
+
+.continueButton:HOVER {
+	color: black;
 }
 
 /*HUB styles */

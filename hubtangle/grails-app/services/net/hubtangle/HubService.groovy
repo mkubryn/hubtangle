@@ -19,7 +19,7 @@ class HubService {
 	
 	
 	/**
-	 * Creates and saves a subtype of {@link Entry} based on passed properties. 
+	 * Creates and saves a sub type of {@link Entry} based on passed properties. 
 	 * 
 	 * Properties have to contain <code>entryType</code> such as "post", "photo" 
 	 * and all the rest information required by the target domain class.

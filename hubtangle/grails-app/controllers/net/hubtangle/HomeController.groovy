@@ -17,6 +17,8 @@ class HomeController {
 		
 		def lastEntries = getRecentEntries(hubMap)
 		
+		flash.message = "ala ma kota"
+		
 		render(view: "homepage", model: [hubMap: hubMap, lastEntries: lastEntries])
 	}
 	

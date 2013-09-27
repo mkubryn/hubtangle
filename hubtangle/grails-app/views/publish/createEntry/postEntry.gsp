@@ -21,7 +21,7 @@
 		<!-- MAIN -->
 		<div id="main">
 			<div class="wrapper cf">
-				<h2>Create post entry on hub ${hubId}.</h2>
+				<h2><g:message code="publish.entry.post.prepare"/></h2>
 				
 				<div id="createPostRespone">
 					<!-- Dynamic content -->

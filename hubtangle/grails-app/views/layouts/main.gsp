@@ -21,6 +21,12 @@
 	</head>
 
 		<body class="${pageProperty( name:'body.class' )}">
+			<!-- Flash -->
+			<g:if test="${flash.message}">
+				<div id="flashMessage"> <h1>${flash.message}</h1></div>
+			</g:if>
+			
+			<!-- Here will be put the main content of subsites -->
 			<g:layoutBody />
 			<r:layoutResources />
 		</body>

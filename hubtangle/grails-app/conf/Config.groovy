@@ -101,3 +101,6 @@ log4j = {
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'net.hubtangle.auth.SecUser'
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'net.hubtangle.auth.SecUserSecRole'
 grails.plugins.springsecurity.authority.className = 'net.hubtangle.auth.SecRole'
+
+// testowy props
+ht.foo.bar = "hellol!"

@@ -107,14 +107,8 @@ class PublishController {
 	/**
 	 * Renders description for post entries	
 	 */
-	def axPostEntryDescription() {
-		render "Just a post.." //TODO prepare business description for post entries
-	}
-	
-	/**
-	 * Renders description for photo entries
-	 */
-	def axPhotoEntryDescription() {
-		render "Photo and description.." //TODO prepare business description for photo
+	def axEntryDescription() {
+		def type = params.type
+		render (view: "createEntry/examples/${type}Example")
 	}
 }

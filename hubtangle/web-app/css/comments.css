@@ -251,6 +251,9 @@
   margin-bottom: 10px;
   overflow: hidden;
 }
+#publishForm label {
+	margin-bottom: 10px;
+}
 #commentform textarea,
 #publishForm textarea {
   width: 93.1818%;

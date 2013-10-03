@@ -35,12 +35,12 @@
 				
 					<p>
 						<label for="title" ><g:message code="publish.entry.post.title"/></label>
-						<input name="title"  id="title" type="text" class="form-poshytip" title="Enter title" />
+						<input name="title"  id="publish-post-title" type="text" class="form-poshytip" title="Enter title" />
 					</p>
 
 					<p>
 						<label for="description"><g:message code="publish.entry.post.description"/> </label>
-						<input name="description" id="description" class="form-poshytip" title="Enter description"></input>
+						<input name="description" id="publish-post-description" type="text" class="form-poshytip" title="Enter description"></input>
 					</p>
 					
 					<p>
@@ -48,7 +48,7 @@
 						<textarea name="content" id="content" rows="5" cols="20" class="form-poshytip" title="Enter content"></textarea>
 					</p>
 			
-					<input type="submit" value="Submit" onclick="submitForm()"/>
+					<input type="submit" value="Create" onclick="submitForm()"/>
 				</g:formRemote>
 				
 				</div>

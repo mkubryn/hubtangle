@@ -10,7 +10,7 @@ import net.hubtangle.entry.VideoEntry;
 
 class BootStrap {
 
-	static String version = '{{ 0.0.5 }}'
+	static String version = '{{ 0.0.6 }}'
 	
 	def springSecurityService
 	
@@ -59,7 +59,7 @@ class BootStrap {
 			dateCreated: new Date(), creator: users[0])
 		
 		hub1.addToEntries(new LinkEntry(title: "Check this link", url: "http://pieniny.org/trasy", author: users[0], hub: hub1, dateCreated: new Date(), description: "Great content."))
-		hub1.addToEntries(new QuoteEntry(title: "Quote of the day", quoteAuthor: "Aga.", text: "Life is life.", author: users[0], hub: hub1, dateCreated: new Date(), description: "Great content."))
+		//hub1.addToEntries(new QuoteEntry(title: "Quote of the day", quoteAuthor: "Aga.", text: "Life is life.", author: users[0], hub: hub1, dateCreated: new Date(), description: "Great content."))
 		hub1.addToEntries(new ImageEntry(url: "../img/test/grails.jpg", title: "We did it!", author: users[0], hub: hub1, dateCreated: new Date(), description: "This is a description"))
 		hub1.addToEntries(new VideoEntry(url: "http://www.youtube.com/embed/5fa32SkaL6U", title: "River.", author: users[0], hub: hub1, dateCreated: new Date(), description: "Nice but expensive!"))
 		hub1.addToEntries(new PostEntry(title: "Few words about me.", author: users[0], hub: hub1, dateCreated: new Date(), description: "My name is..", content: "This\nis\n\t\tcontent"))

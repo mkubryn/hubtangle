@@ -43,7 +43,13 @@
 				<!-- sidebar -->
         		<aside id="sidebar">
         		<ul>
+        			<li class="block">
+		        		<h4>${hub.name }</h4>
+						${hub.description }
+	        		</li>
+	        		
 	        		<li class="block">
+	        			<h4>Actions</h4>
 						<sec:ifUserCanPostOnHub hubId="${hub.id}">
 	        				<div class="hubFeatureButton">
 			        			<a href="/hubtangle/publish/entry?hub=${hub.id}">
@@ -62,26 +68,7 @@
 	        		</li>
 
 	        		<li class="block">
-		        		<h4>${hub.name }</h4>
-						${hub.description }
-	        		</li>
-	        		
-	        		<li class="block">
-		        		<h4>Categories</h4>
-						<ul>
-							<li class="cat-item"><a href="#" title="title">Film and video<span class="post-counter"> (2)</span></a></li>
-							<li class="cat-item"><a href="#" title="title">Print<span class="post-counter"> (2)</span></a></li>
-							<li class="cat-item"><a href="#" title="title">Photo and lomo<span class="post-counter"> (2)</span></a></li>
-							<li class="cat-item"><a href="#" title="title">Habitant morbi<span class="post-counter"> (2)</span></a></li>
-							<li class="cat-item"><a href="#" title="title">Film and video<span class="post-counter"> (2)</span></a></li>
-							<li class="cat-item"><a href="#" title="title">Print<span class="post-counter"> (2)</span></a></li>
-							<li class="cat-item"><a href="#" title="title">Photo and lomo<span class="post-counter"> (2)</span></a></li>
-							<li class="cat-item"><a href="#" title="title">Habitant morbi<span class="post-counter"> (2)</span></a></li>
-						</ul>
-	        		</li>
-	        		
-	        		<li class="block">
-		        		<h4>Hub moderators</h4>
+		        		<h4>Moderators</h4>
 						<ul>
 							<li class="cat-item"><a href="#" title="title">Marcin Kubryn</a></li>
 							<li class="cat-item"><a href="#" title="title">Agnieszka S.</a></li>

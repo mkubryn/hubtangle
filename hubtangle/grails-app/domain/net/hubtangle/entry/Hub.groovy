@@ -1,6 +1,6 @@
 package net.hubtangle.entry
 
-import net.hubtangle.user.User;
+import net.hubtangle.user.HUser;
 
 /**
  * 
@@ -33,7 +33,7 @@ class Hub {
 	/**
 	 * {@link User} who created this {@link Hub}
 	 */
-	static belongsTo = [creator: User]
+	static belongsTo = [creator: HUser]
 	
 	static hasMany = [entries: Entry]
 

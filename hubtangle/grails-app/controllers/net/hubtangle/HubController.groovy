@@ -23,7 +23,7 @@ class HubController {
 	 */
 	@Secured(['ROLE_USER'])
 	def hub() {
-		def hub = Hub.get(params.hubId)
+		def hub = Hub.get(asLong(params.hubId))
 		
 		if(!hub) {
 			log.info("[SEC] Attempt to obtain not existing hub with id={}", params.hubId)

@@ -1,5 +1,7 @@
 package net.hubtangle
 
+import java.lang.reflect.UndeclaredThrowableException;
+
 import grails.plugins.springsecurity.Secured;
 
 import javax.servlet.http.HttpServlet;
@@ -13,7 +15,7 @@ import net.hubtangle.entry.Hub;
 import net.hubtangle.entry.PostEntry;
 import net.hubtangle.helpers.RequestHelper;
 import net.hubtangle.model.exception.ModelValidationException;
-import net.hubtangle.user.User;
+import net.hubtangle.user.HUser;
 import net.hubtangle.utils.ControllerUtils;
 
 import static net.hubtangle.helpers.RequestHelper.*;
@@ -70,8 +72,6 @@ class PublishController {
 	def saveEntry() {
 		def hubId = asLong(params.id)
 		
-		println "DESC: " + params.description
-		
 		// Remove read only properties
 		params.remove("id")
 		params.remove("hubId")
@@ -88,13 +88,16 @@ class PublishController {
 			log.warn("[SECURITY] Access denied while publishing entry.", e)
 			response.sendError(SC_FORBIDDEN)
 			return
-		} catch (ModelValidationException e) {
+		} catch (UndeclaredThrowableException e) {
 		
-			log.info("Validation exception while publishing entry.", e)
-			/*
-			 * Validation went wrong - render validation errors
-			 */
-			render(view: 'validationErrors', model: [entry: e.modelBean])
+			if(e.getCause() instanceof ModelValidationException) {
+				def mve = e.getCause()
+				log.info("Validation exception while publishing entry.", e)
+				/*
+				 * Validation went wrong - render validation errors
+				 */
+				render(view: 'validationErrors', model: [entry: mve.modelBean])
+			}
 			return
 		}
 		

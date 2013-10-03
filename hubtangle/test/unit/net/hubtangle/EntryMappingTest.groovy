@@ -16,7 +16,7 @@ class EntryMappingTest {
 	
 	def mappper = new ClassMatchingEntryMapper()
 	
-	@Test
+	@Test 
 	public void mapPostEntry() {
 		def props = [type: 'post', title: 'Title', description: 'Desc', notexistingparam: "nooone"]
 		
@@ -27,7 +27,7 @@ class EntryMappingTest {
 		assertEquals("Not matching title", entry.title, props.title)
 	}
 	
-	@Test
+	@Test  
 	public void mapImageEntry() { 
 		def props = [type: 'image', title: 'Title', description: 'Desc', url: 'google']
 		

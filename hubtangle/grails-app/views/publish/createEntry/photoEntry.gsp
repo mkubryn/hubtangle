@@ -21,7 +21,7 @@
 		<!-- MAIN -->
 		<div id="main">
 			<div class="wrapper cf">
-				<h2>Create post entry on hub ${hubId}.</h2>
+				<h3>Create post entry on hub ${hubId}.</h3>
 				
 				<div id="createPostRespone">
 					<!-- Dynamic content -->

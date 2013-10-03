@@ -15,7 +15,6 @@ class ImageEntry extends Entry {
     static constraints = {
     }
 	
-	
 	def getRenderTemplateName() {
 		"imageEntry"
 	}

@@ -5,7 +5,7 @@ import net.hubtangle.entry.Hub
 import net.hubtangle.entry.PostEntry
 import net.hubtangle.model.ClassMatchingEntryMapper;
 import net.hubtangle.model.exception.ModelValidationException
-import net.hubtangle.user.User
+import net.hubtangle.user.HUser
 
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.AccessDeniedException
@@ -52,7 +52,7 @@ class HubService {
 		// mapper creates entry throws an exception
 		Entry newEntry = entryMapper.map(entryData)
 		
-		newEntry.author = User.get(springSecurityService.getCurrentUser().id)
+		newEntry.author = HUser.get(springSecurityService.getCurrentUser().id)
 		newEntry.hub = Hub.get(hubId)
 		
 		// validate entry

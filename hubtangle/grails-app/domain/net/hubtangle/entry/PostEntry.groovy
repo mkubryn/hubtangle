@@ -13,6 +13,7 @@ class PostEntry extends Entry {
 	String content
 	
     static constraints = {
+		content size: 0..3000 
     }
 
 	def getRenderTemplateName() {

@@ -11,7 +11,7 @@
 			<div class="month"> ${entry.getMonthName()} </div>
 		</div>
 		<div class="excerpt">
-			<a href="single.html" class="post-heading">
+			<a href="${request.contextPath}/image/${entry.id}" class="post-heading">
 				${entry.title}
 			</a>
 			<p>

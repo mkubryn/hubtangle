@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat
 
 import javax.persistence.Transient;
 
-import net.hubtangle.user.User;
+import net.hubtangle.user.HUser;
 
 /**
  * Represents an abstract entry. Entries belong to hubs
@@ -15,7 +15,7 @@ abstract class Entry implements Comparable<Entry> {
 	/**
 	 * Author of this antry
 	 */
-	User author
+	HUser author
 	
 	/**
 	 * Parent hub of this entry
@@ -40,10 +40,10 @@ abstract class Entry implements Comparable<Entry> {
 	/*
 	 * GORM Mappings
 	 */
-	static belongsTo = [author: User, hub: Hub]
+	static belongsTo = [author: HUser, hub: Hub]
 	
 	static constraints = {
-		description (nullable: true, size: 0..1024 )
+		description (nullable: true, size: 0..300 )
 		title (nullable: true) //FIXME - title shuldn't be nullable
     }
 	

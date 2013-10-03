@@ -3,7 +3,7 @@ import net.hubtangle.*;
 import net.hubtangle.entry.Entry;
 import net.hubtangle.entry.Hub;
 import net.hubtangle.entry.LinkEntry;
-import net.hubtangle.user.User;
+import net.hubtangle.user.HUser;
 
 import static org.junit.Assert.*
 import org.junit.*
@@ -59,12 +59,12 @@ class HubIntegrationTests {
 	}	
 	
 	def getTestUser() {
-		def user1 = User.findByUsername("Marcin")
+		def user1 = HUser.findByUsername("Marcin")
 		if(user1) {
 			return user1
 		}
 		
-		user1 = new User(username: "Marcin")
+		user1 = new HUser(username: "Marcin")
 		assertNotNull "Test user not saved", user1.save()
 		user1
 	}

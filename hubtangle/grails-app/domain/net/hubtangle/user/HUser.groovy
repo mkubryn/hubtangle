@@ -5,7 +5,7 @@ package net.hubtangle.user
  * @author mkubryn
  *
  */
-class User {
+class HUser {
 
 	String username
 	

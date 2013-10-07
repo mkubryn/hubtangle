@@ -6,6 +6,8 @@ modules = {
 		resource url: 'js/application.js', disposition: 'head'
 		resource url: 'css/style.css', disposition: 'head'
 		
+		resource url: 'js/spinner.js', disposition: 'head'
+		
 		resource url: 'css/skin.css', disposition: 'head'
 		resource url: 'js/modernizr.js', disposition: 'head'
 		resource url: 'css/lessframework.css', disposition: 'head'

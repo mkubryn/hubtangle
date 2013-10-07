@@ -84,7 +84,7 @@ class ServiceController {
 		
 		def result = saveFileInStore(multipartFile)
 		
-		render "{result: $result}"
+		render "<div id='dsFileId'>${result}</div>"
 	}
 	
 	/**

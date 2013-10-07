@@ -1,8 +1,8 @@
 <!-- Image -->
 <article class="format-image">
 	<div class="feature-image">
-		<a href="${entry.url}"
-			data-rel="prettyPhoto"> <img src="${entry.url}" alt="${entry.title}" />
+		<a href="#"
+			data-rel="prettyPhoto"> <ds:img id="${entry.id}" />
 		</a>
 	</div>
 	<div class="box cf">

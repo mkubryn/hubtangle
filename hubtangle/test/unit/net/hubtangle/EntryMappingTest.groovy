@@ -26,7 +26,7 @@ class EntryMappingTest {
 		assertEquals("Not matching class name", entry.getClass(), PostEntry.class)
 		assertEquals("Not matching title", entry.title, props.title)
 	}
-	
+	 
 	@Test  
 	public void mapImageEntry() { 
 		def props = [type: 'image', title: 'Title', description: 'Desc', url: 'google']

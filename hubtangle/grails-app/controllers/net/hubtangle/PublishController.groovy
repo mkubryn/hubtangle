@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import org.codehaus.groovy.grails.plugins.i18n.I18nGrailsPlugin;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
 import net.hubtangle.entry.Hub;

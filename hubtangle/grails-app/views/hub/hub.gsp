@@ -35,7 +35,6 @@
 						<div class="nav-previous"><a href="#">Newer Entries &#8594;</a></div>
 					</div>
 					<!--ENDS page-navigation -->
-					
 				
         		</div>
         		<!-- ENDS posts list -->

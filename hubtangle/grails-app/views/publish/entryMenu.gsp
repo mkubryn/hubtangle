@@ -35,7 +35,7 @@
 									<g:render template="entryTypeChoose" model="[entryType: 'post', icon: 'mono-icons/paperpencil32.png']"/>
 								<td>
 									<!-- PHOTO ENTRY -->
-									<g:render template="entryTypeChoose" model="[entryType: 'photo', icon: 'mono-icons/paperphoto32.png']"/>
+									<g:render template="entryTypeChoose" model="[entryType: 'image', icon: 'mono-icons/paperphoto32.png']"/>
 								</td>
 								<td>
 									<!-- Link entry -->

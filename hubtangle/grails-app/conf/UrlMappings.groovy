@@ -20,8 +20,12 @@ class UrlMappings {
 		"/video/$entryId" (controller: "entry", action: "showEntry") {
 			type = "Video"
 		}
-
 		
+		/*
+		 * Mappings for data server integration
+		 */
+		"/download/$dsFileId" (controller: "download", action: "service")
+
 		/*
 		 * Standard grails mappings
 		 */

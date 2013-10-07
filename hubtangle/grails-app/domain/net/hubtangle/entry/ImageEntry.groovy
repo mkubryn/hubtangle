@@ -8,9 +8,7 @@ package net.hubtangle.entry
  */
 class ImageEntry extends Entry {
 
-	// TODO url -> internal file id
-	
-	String url
+	Long dsFileId
 	
     static constraints = {
     }

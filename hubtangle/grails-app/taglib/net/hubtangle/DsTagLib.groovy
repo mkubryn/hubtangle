@@ -15,7 +15,13 @@ class DsTagLib {
 		out << createImgTag(name, idnetifier)
 	}
 	
-	def createImgTag(name, idnetifier) {
+	def imageUploadForm = { attrs ->
+		def elementToUpdate = attrs.elementToUpdate
+		
+		out << createImageUploadFormTag(elementToUpdate)
+	}
+	
+	private createImgTag(name, idnetifier) {
 		def sb = new StringBuilder()
 		
 		// TODO ds url for tags is hardcoded. Should be configurable
@@ -36,5 +42,11 @@ class DsTagLib {
 		"<img src='http://localhost:8080/hubtangle/img/test/rnd/" + (new Random().next(8) % 5) + ".jpg' />"
 	}
 	
-	
+	private createImageUploadFormTag(String elementToUpdate) {
+		def sb = new StringBuilder()
+		
+		def dsUploadUrl = "http://localhost:8090/open-ds/service/upload"
+		
+		render(template: "/layouts/imageUploadForm", model: [dsUploadUrl: dsUploadUrl, elementToUpdateWithDsId: elementToUpdate])
+	}
 }

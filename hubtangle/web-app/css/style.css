@@ -807,6 +807,10 @@ footer h6 {
 }
 
 /* PUBLISH styles */
+#publish-box {
+	padding-top: 30px;	
+}
+
 #publishForm {
 	padding-top: 20px;	
 }

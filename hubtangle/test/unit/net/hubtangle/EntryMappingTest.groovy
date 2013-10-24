@@ -5,7 +5,7 @@ import net.hubtangle.MiscTagLib;
 import net.hubtangle.entry.ImageEntry;
 import net.hubtangle.entry.LinkEntry;
 import net.hubtangle.entry.PostEntry;
-import net.hubtangle.model.ClassMatchingEntryMapper
+import net.hubtangle.utils.ClassMatchingEntryMapper;
 
 import static org.junit.Assert.*;
 

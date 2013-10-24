@@ -2,6 +2,8 @@ class UrlMappings {
 
 	static mappings = {
 
+        "/"(controller: "home", action: "index")
+
 		/*
 		 * Mapping for hubs
 		 */
@@ -11,7 +13,7 @@ class UrlMappings {
 		/*
 		 * Mapping for entries
 		 */
-		"/article/$entryId" (controller: "entry", action: "showEntry") {
+		"/article/$entryId" (controller: "entry", action: "showEntry" ) {
 			type = "Post"
 		}
 		"/image/$entryId" (controller: "entry", action: "showEntry") {
@@ -22,20 +24,19 @@ class UrlMappings {
 		}
 		
 		/*
-		 * Mappings for data server integration
+		 * Mappings for data server
 		 */
-		"/download/$dsFileId" (controller: "download", action: "service")
+		"/download/$dsFileId" (controller: "upload", action: "download")
 
 		/*
 		 * Standard grails mappings
 		 */
-		"/$controller/$action?/$id?"{
+		"/$controller/$action/$id?"{
 			constraints {
 				// apply constraints here
 			}
 		}
-		"/"(view:"/home")
-		
+
 		/*
 		 * Error mappings
 		 */

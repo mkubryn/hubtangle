@@ -12,11 +12,16 @@ class ConfigurationService {
 	 * Config.groovy default Grails file*/	
 	def grailsApplication
 	
-	def get(String key, Object defaultValue = null) {
-		def val = grailsApplication.conf."$key"
+	def getProp (String key, Object defaultValue = null) {
+		def val = readConfig(key)
 		if(!val) {
 			return defaultValue
 		}
 		val
 	}
+
+    def readConfig(String configProperty) {
+        def confMap = grailsApplication.getFlatConfig()
+        return confMap["${configProperty}"]
+    }
 }

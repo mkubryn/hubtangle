@@ -10,14 +10,16 @@ import net.hubtangle.entry.Hub;
  */
 class HomeController {
 
+	def dsServerClientService
+	def configurationService
+
     def index() {
+		
 		def hubMap = Hub.getAll().collectEntries { hub ->
 			[hub.getSignature(), hub]
 		}
 		
 		def lastEntries = getRecentEntries(hubMap)
-		
-		flash.message = "ala ma kota"
 		
 		render(view: "homepage", model: [hubMap: hubMap, lastEntries: lastEntries])
 	}
@@ -33,7 +35,7 @@ class HomeController {
 				}
 			}
 		}
-		
+
 		entriesList
 	}
 }

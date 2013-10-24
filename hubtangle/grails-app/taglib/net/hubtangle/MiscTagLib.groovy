@@ -7,7 +7,7 @@ class MiscTagLib {
 	 * Redirects to homepage
 	 */
 	def goToHome = {
-		goToPath "/home"
+		goToPath "/"
 	}
 
 	/**

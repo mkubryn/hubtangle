@@ -2,6 +2,7 @@ package hubtangle
 
 
 
+import net.hubtangle.security.SecurityFilters;
 import grails.test.mixin.*
 
 @Mock(SecurityFilters)

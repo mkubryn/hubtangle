@@ -10,7 +10,7 @@ import net.hubtangle.entry.VideoEntry;
 
 class BootStrap {
 
-	static String version = '{{ 0.0.6 }}'
+	static String version = '{{ 0.0.7 }}'
 	
 	def springSecurityService
 	

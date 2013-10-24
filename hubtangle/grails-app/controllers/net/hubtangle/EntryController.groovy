@@ -4,7 +4,6 @@ import grails.plugins.springsecurity.SpringSecurityService;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.logging.LogFactory;
 
 import net.hubtangle.entry.Entry;
 import net.hubtangle.entry.ImageEntry;
@@ -17,8 +16,6 @@ import net.hubtangle.entry.VideoEntry;
  */
 class EntryController {
 	
-	private static final log = LogFactory.getLog(EntryController.class)
-
 	/** DI of {@link HubService}*/
 	def hubService
 	

@@ -3,9 +3,9 @@ package net.hubtangle
 import net.hubtangle.entry.Entry;
 import net.hubtangle.entry.Hub
 import net.hubtangle.entry.PostEntry
-import net.hubtangle.model.ClassMatchingEntryMapper;
 import net.hubtangle.model.exception.ModelValidationException
 import net.hubtangle.user.HUser
+import net.hubtangle.utils.ClassMatchingEntryMapper;
 
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.AccessDeniedException

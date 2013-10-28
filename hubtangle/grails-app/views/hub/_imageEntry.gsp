@@ -2,7 +2,7 @@
 <article class="format-image">
 	<div class="feature-image">
 		<a href="#"
-			data-rel="prettyPhoto"> <ds:img id="${entry.id}" />
+			data-rel="prettyPhoto"> <ds:img id="${entry.dsFileId}" />
 		</a>
 	</div>
 	<div class="box cf">

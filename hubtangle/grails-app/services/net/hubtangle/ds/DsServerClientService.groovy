@@ -5,10 +5,13 @@ import groovyx.net.http.HTTPBuilder
 import groovyx.net.http.HttpResponseDecorator
 import groovyx.net.http.Method
 import org.apache.commons.fileupload.FileItem
+import org.apache.commons.fileupload.FileItemFactory
+import org.apache.commons.fileupload.disk.DiskFileItem
 import org.apache.commons.fileupload.disk.DiskFileItemFactory
 import org.apache.http.entity.mime.HttpMultipartMode
 import org.apache.http.entity.mime.MultipartEntity
 import org.apache.http.entity.mime.content.InputStreamBody
+import org.codehaus.groovy.grails.io.support.IOUtils
 import org.springframework.beans.factory.InitializingBean
 import org.springframework.util.Assert
 import org.springframework.web.multipart.MultipartFile
@@ -45,13 +48,15 @@ class DsServerClientService implements InitializingBean {
      *
      * @return identifier of new file in dataserver
      */
-    def upload(File file, String fieldName, String contentType, boolean isFormField = false) {
-        def fif = new DiskFileItemFactory()
+    def upload(InputStream input, String contentType, String fileName, boolean isFormField = false) {
+
+        FileItemFactory factory = new DiskFileItemFactory()
 
         // Create Apache Commons FileItem & write file at fullFilePathString into it
-        FileItem fi = fif.createItem(fieldName, contentType, isFormField, file.name)
+        FileItem fi = factory.createItem("file", contentType, isFormField, fileName)
 
-        fi.write(file)
+        // copy file from input to fileItem
+        IOUtils.copy(input, fi.getOutputStream())
 
         // Convert FileItem to Spring wrapper: CommonsMultipartFile
         MultipartFile mf = new CommonsMultipartFile(fi)
@@ -67,7 +72,7 @@ class DsServerClientService implements InitializingBean {
      */
     def upload(CommonsMultipartFile multipartImageFile) {
 
-        def http = new HTTPBuilder(DS_SERVER_REST + "/dataserver/r/upload")
+        def http = new HTTPBuilder(DS_SERVER_REST + "/r/upload")
 
         def dsResponse = http.request(Method.POST, ContentType.TEXT) { req ->
             requestContentType: "multipart/form-data"

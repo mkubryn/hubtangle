@@ -3,7 +3,7 @@
 	<title>Create post</title>
     <meta name="layout" content="main"/>
     <g:javascript/>
-    <r:require modules="application"/>
+    <r:require modules="application,modernizr,uploadr"/>
 	<r:layoutResources />
 </head>
 	<body class="blog">
@@ -32,10 +32,7 @@
 						<!-- Target entry type -->
 						<input type="hidden" name="type" value="image" />
 
-						<p>
-							<label for="dsFileId" ><g:message code="publish.entry.image.upload"/></label>
-							<input name="dsFileId"  id="publish-image-upload" type="text" class="form-poshytip" title="Enter ds-id" />
-						</p>
+                        <layout:include template="imageUploadBox" />
 					
 						<p>
 							<label for="title" ><g:message code="publish.entry.image.title"/></label>

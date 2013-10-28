@@ -72,6 +72,9 @@ class PublishController {
 	 */
 	@Secured(['ROLE_USER'])
 	def saveEntry() {
+
+        println "Save entry: " + params
+
 		def hubId = asLong(params.id)
 		
 		// Remove read only properties

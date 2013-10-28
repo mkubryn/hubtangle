@@ -104,4 +104,4 @@ grails.plugins.springsecurity.authority.className = 'net.hubtangle.auth.SecRole'
 
 // testowy props
 ht.foo.bar = "hellol!"
-ht.cluster.dataserver.uri = "http://localhost:8090"
+ht.cluster.dataserver.uri = "http://localhost:8090/dataserver"

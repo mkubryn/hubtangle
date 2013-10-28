@@ -43,7 +43,7 @@
 				<!-- Standard -->
 				<article class="format-standard">
 					<div class="feature-image">
-						<ds:img id=".test_photo.png"/>
+						<ds:img id="${entry.dsFileId}"/>
 					</div>
 					<div class="box cf">
 						<div class="entry-date"><div class="number">${entry.getDayOfMonth()}</div><div class="month">${entry.getMonthName()}</div></div>

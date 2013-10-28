@@ -847,13 +847,18 @@ footer h6 {
 .continueButton:HOVER {
 	color: black;
 }
-
-.publish-post-description {
-	
+#imageUploadPreviewBox {
+    display: inline-block;
+    white-space: nowrap;
+    vertical-align: middle;
 }
 
-.publish-post-title {
-	
+#imageUploadPreviewBox img {
+    max-width: 150px;
+    background-color: #2d2d2d;
+    padding: 5px;
+    margin-right: 20px;
+    border: 1px solid #ffffff;
 }
 
 /*HUB styles */

@@ -24,7 +24,16 @@ class ClassMatchingEntryMapper {
 
 		props.each { property, value ->
 			if(instance.hasProperty(property)) {
- 				instance."$property" = value
+                def metProp = instance.metaClass.getMetaProperty(property)
+
+                /**
+                 * FIXME: we should support more types in ClassMatchingEntryMapper
+                 */
+                if(metProp.type.isAssignableFrom(Long.class)) {
+                    instance."$property" = Long.parseLong(value)
+                } else {
+                    instance."$property" = value
+                }
 			}
 		}
 		
@@ -37,7 +46,6 @@ class ClassMatchingEntryMapper {
 		try {
 			Class.forName(className, true, Thread.currentThread().contextClassLoader)
 		} catch (e) {
-			e.printStackTrace(); // TODO rm me
 			throw new IllegalArgumentException("Unable to load domain class: $className ", e)
 		}
 	}

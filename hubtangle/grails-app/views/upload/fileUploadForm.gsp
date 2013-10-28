@@ -18,27 +18,42 @@
 	<!-- MAIN -->
 	<div id="main">
 		<div class="wrapper cf">
-		
-			<div id="image-upload-box">
+
+            <h2>1. Choose images</h2>
+
+			<div id="imageUploadBox">
 			
-				<div id="spinnerBox" >
-					<p/>
-				</div>
+                <div id="imageUploadPreviewBox">
+                    <p/>
+                </div>
 
+				<uploadr:add controller="upload" action="upload" name="imageUploadr" fileselect="Click to choose or drag.."
+					direction="up" maxVisible="3" unsupported="/hubtangle/upload/warning" downloadable="false" viewable="false"
+					model="[]" allowedExtensions="png,jpg,gif,jpeg">
 
-                <g:uploadForm action="upload">
-                    <input type="file" name="file" />
-                    <input type="submit" />
-                </g:uploadForm>
+                    <uploadr:onSuccess>
+                        // add preview and hidden input with dsId
+                        $('#imageUploadPreviewBox').append('<span id="'+ 'uploadrimg-'+ response.fileName + '" > <img src="'+ response.location +'" />  <input type="hidden" name="dsId" value="' + response.dsId + '" /> </span>');
 
-				
-				<uploadr:add name="mySecondUploadr" path="/home/mkubryn/devel/hubtangle-eclipse-ws/ds_filestore" allowedExtensions="jpg,png,gif" 
-					direction="up" maxVisible="5" unsupported="/hubtangle/upload/warning" 
-					model="[]">
- 
+                        // callback when done
+                        callback();
+
+                    </uploadr:onSuccess>
+
+                    <uploadr:onDelete>
+                        var elementId = 'uploadrimg-' + file.fileName;
+                        console.log('you clicked delete for: ' + elementId);
+
+                        var element = document.getElementById(elementId);
+                        element.parentNode.removeChild(element);
+
+                        return true;
+                    </uploadr:onDelete>
+
 				</uploadr:add>
-			
 			</div>
+
+            <h2>2. Type your description</h2>
 
 		</div>
 		<!-- ENDS WRAPPER -->

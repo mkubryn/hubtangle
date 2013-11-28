@@ -1,9 +1,9 @@
 <!-- Image -->
 <article class="format-image">
 	<div class="feature-image">
-		<a href="#"
-			data-rel="prettyPhoto"> <ds:img id="${entry.dsFileId}" />
-		</a>
+
+        <ds:prettyImg id="${entry.dsFileId}" />
+
 	</div>
 	<div class="box cf">
 		<div class="entry-date">

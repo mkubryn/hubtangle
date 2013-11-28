@@ -1,6 +1,7 @@
 package net.hubtangle.entry
 
-import net.hubtangle.user.HUser;
+import net.hubtangle.user.HUser
+import net.hubtangle.security.acl.AclSecured;
 
 /**
  * 
@@ -31,7 +32,7 @@ class Hub {
 	SortedSet<Entry> entries
 	
 	/**
-	 * {@link User} who created this {@link Hub}
+	 * {@link HUser} who created this {@link Hub}
 	 */
 	static belongsTo = [creator: HUser]
 	

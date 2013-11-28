@@ -1,5 +1,7 @@
 package net.hubtangle.entry
 
+import net.hubtangle.security.acl.AclSecured
+
 import java.text.SimpleDateFormat
 
 import javax.persistence.Transient;
@@ -11,7 +13,7 @@ import net.hubtangle.user.HUser;
  * @author mkubryn
  */
 abstract class Entry implements Comparable<Entry> {
-	
+
 	/**
 	 * Author of this antry
 	 */
@@ -88,4 +90,6 @@ abstract class Entry implements Comparable<Entry> {
 	def entryIsEarlierThan(anotherEntry) {
 		dateCreated.compareTo(anotherEntry.dateCreated)
 	}
+
+
 }

@@ -2,22 +2,18 @@ package net.hubtangle
 
 import net.hubtangle.entry.Entry;
 import net.hubtangle.entry.Hub
-import net.hubtangle.entry.PostEntry
 import net.hubtangle.model.exception.ModelValidationException
 import net.hubtangle.user.HUser
-import net.hubtangle.utils.ClassMatchingEntryMapper;
-
-import org.slf4j.LoggerFactory;
+import net.hubtangle.utils.ClassMatchingEntryMapper
+import net.hubtangle.utils.AceKeys
 import org.springframework.security.access.AccessDeniedException
 
 class HubService {
 
-	org.slf4j.Logger log = LoggerFactory.getLogger(HubService.class)
-	
-	def springSecurityService
+    def springSecurityService
+    def aclService
 	def entryMapper = new ClassMatchingEntryMapper()
-	
-	
+
 	/**
 	 * Creates and saves a sub type of {@link Entry} based on passed properties. 
 	 * 
@@ -51,18 +47,21 @@ class HubService {
 		// delegate specific entry creation to mapper
 		// mapper creates entry throws an exception
 		Entry newEntry = entryMapper.map(entryData)
-		
-		newEntry.author = HUser.get(springSecurityService.getCurrentUser().id)
+
+		newEntry.author = HUser.get(aclService.getCurrentUserId())
 		newEntry.hub = Hub.get(hubId)
-		
+
 		// validate entry
 		if(!newEntry.validate()) {
 			throw new ModelValidationException(modelBean: newEntry)
 		}
-		
-		newEntry.save()
+
+        newEntry.save(failOnError: true)
+        aclService.addAce(AceKeys.ENTRY_R, newEntry.getId())
+        aclService.addAce(AceKeys.ENTRY_W, newEntry.getId())
+
+        newEntry
 	}
-	
 	
 	/**
 	 * Checks weather currently authenticated user has right to post on {@link Hub} of given id
@@ -70,17 +69,7 @@ class HubService {
 	 * @return true if user has right to post on hub, false otherwise
 	 */
     def canPostOnHub(hubId) {
-		def currentUser = springSecurityService.getCurrentUser()
-		if(!currentUser) {
-			return false
-		}
-		
-		def hub = Hub.get(hubId)
-		if(hub == null) {
-			return false
-		}
-		
-		return hub.creator.id.equals(currentUser.id)
+        aclService.hasAce(AceKeys.HUB_W, hubId)
 	}
 	
 	/**
@@ -89,9 +78,7 @@ class HubService {
 	 * @return true or false
 	 */
 	def canViewEntry(entryId) {
-		/*
-		 * TODO implement view entry permission logics
-		 */
-		Entry.get(entryId) != null
-	}
+        //aclService.hasAce(AceKeys.ENTRY_R, entryId)
+        true
+    }
 }

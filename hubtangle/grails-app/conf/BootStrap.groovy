@@ -6,13 +6,15 @@ import net.hubtangle.entry.ImageEntry;
 import net.hubtangle.entry.LinkEntry;
 import net.hubtangle.entry.PostEntry;
 import net.hubtangle.entry.QuoteEntry;
-import net.hubtangle.entry.VideoEntry;
+import net.hubtangle.entry.VideoEntry
+import net.hubtangle.utils.AceKeys;
 
 class BootStrap {
 
 	static String version = '{{ 0.0.7 }}'
 	
 	def springSecurityService
+    def aclService
 	
     def init = { servletContext ->
 		
@@ -75,6 +77,9 @@ class BootStrap {
 			
 			println "bootstrap: Hub $name saved with id:" + hubId.toString()
 		}
+
+
+        aclService.addAce(AceKeys.HUB_W, users.first().id)
     }
 	
     def destroy = {

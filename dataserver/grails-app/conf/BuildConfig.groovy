@@ -43,6 +43,8 @@ grails.project.dependency.resolution = {
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
 
+        runtime "org.liquibase:liquibase-core:2.0.1"
+
         // runtime 'mysql:mysql-connector-java:5.1.22'
     }
 
@@ -57,8 +59,6 @@ grails.project.dependency.resolution = {
         //runtime ":yui-minify-resources:0.1.5"
 
         build ":tomcat:$grailsVersion"
-
-        runtime ":database-migration:1.3.2"
 
         compile ':cache:1.0.1'
     }

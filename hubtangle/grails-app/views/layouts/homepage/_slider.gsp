@@ -5,7 +5,7 @@
 	<div class="main-slider-content" >
 	<ul class="sliders-wrap-inner">
 	    <li>
-	          <img src="img/test/c-planet.jpg" title="" alt="alt" />           
+	          <img src="img/test/c-planet.jpg" title="" alt="alt" />
 	          <div class="slider-description">
 	            <h4>Where we come from</h4>
 	            <p>The Earth is a tiny planet in a vast universe. The universe is made up of billions of stars and planets and enormous clouds of gas, all separated by huge empty spaces
@@ -15,7 +15,7 @@
 	    </li>
 	    
 	    <li>
-	          <iframe width="940" height="367" src="http://www.youtube.com/embed/9pmPa_KxsAM" frameborder="0" allowfullscreen></iframe>           
+	          <iframe width="940" height="367" src="http://www.youtube.com/embed/9pmPa_KxsAM" frameborder="0" allowfullscreen></iframe>
 	          <div class="slider-description">
 	            <h4>Lorem ipsum dolor</h4>
 	            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est...
@@ -25,7 +25,7 @@
 	    </li>
 	    
 	    <li>
-	          <img src="img/test/pie.jpg" title="" alt="alt" />           
+	          <img src="img/test/pie.jpg" title="" alt="alt" />
 	          <div class="slider-description">
 	            <h4>Recent activity</h4> <h5>"Pieniny 2013 - Marcin i Aga"</h5>
 	            <p>Go to hub to see recent updates..

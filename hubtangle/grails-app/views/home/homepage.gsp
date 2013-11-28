@@ -42,11 +42,16 @@
 				<g:each in="${lastEntries}" var="entry"> 
 					<figure class="${entry.hub.getSignature()}">
 						<a href="hub/${entry.hub.id}" class="thumb">
-							<ds:img id=".test_photo.png"/>
+
+                            <g:if test="${entry instanceof net.hubtangle.entry.ImageEntry}" >
+                                <ds:img id="${entry.dsFileId}"/>
+                            </g:if>
+
+
 						</a>
 						
 						<figcaption>
-							<a href="hub/${entry.hub.id}"><h3 class="heading">${entry.title}</h3></a>
+							<a href="hub/${entry.hub.id}#highlight-${entry.id}"><h3 class="heading">${entry.title}</h3></a>
 							${entry.description}
 						</figcaption>
 					</figure>
@@ -57,7 +62,7 @@
 		<!-- ENDS featured -->
 		</div>
 		<!-- ENDS WRAPPER -->
-	</div>
+	</div>       _GrailsBootstrap
 	<!-- ENDS MAIN -->
 </body>
 </html>

@@ -59,15 +59,7 @@ grails.exceptionresolver.params.exclude = ['password']
 // configure auto-caching of queries by default (if false you can cache individual queries with 'cache: true')
 grails.hibernate.cache.queries = false
 
-environments {
-    development {
-        grails.logging.jul.usebridge = true
-    }
-    production {
-        grails.logging.jul.usebridge = false
-        // TODO: grails.serverURL = "http://www.changeme.com"
-    }
-}
+
 
 // log4j configuration
 log4j = {
@@ -90,4 +82,17 @@ log4j = {
            'net.sf.ehcache.hibernate'
 }
 
-ht.ds.filestore.dir = "/home/mkubryn/htfilestore-tmp"
+environments {
+    development {
+        grails.server.port.http = 8090
+        grails.logging.jul.usebridge = true
+
+        ht.ds.filestore.dir = "/home/mkubryn/htfilestore-tmp"
+    }
+    production {
+        grails.logging.jul.usebridge = false
+        // TODO: grails.serverURL = "http://www.changeme.com"
+
+        ht.ds.filestore.dir = "/tmp/ds-filestore"
+    }
+}

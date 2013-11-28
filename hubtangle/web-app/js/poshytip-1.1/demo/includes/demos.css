@@ -43,7 +43,7 @@ a {
 	/* ==================== | LAYOUT | ==================== */
 
 body {
-	background:#F4F4F4 url(sheet_bg.jpg) fixed no-repeat;
+    background-color: #ffffff;
 	color:#434343;
 	text-align:center;
 }

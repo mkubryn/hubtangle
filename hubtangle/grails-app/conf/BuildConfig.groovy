@@ -63,5 +63,6 @@ grails.project.dependency.resolution = {
 		compile ":modernizr:1.7.2"
 		compile ":uploadr:latest.integration"
 		compile ":rest:0.7"
+        compile ":redis:1.4.2"
     }
 }

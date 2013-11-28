@@ -9,9 +9,19 @@ import javax.servlet.http.HttpServletResponse
 /**
  * Service managing Dataserver's filestore
  */
-class FilestoreService {
+class FilestoreService implements InitializingBean {
 
     def grailsApplication
+
+    @Override
+    void afterPropertiesSet() throws Exception {
+        def filestoreDir = getFilestoreDir()
+        def filestore = new File(filestoreDir)
+
+        if(!filestore.exists()) {
+            filestore.mkdirs()
+        }
+    }
 
     /**
      * Saves file in the filestore
@@ -44,6 +54,7 @@ class FilestoreService {
     }
 
     private computeLocationForMultipartFile(MultipartFile multipartFile) {
+
         def md5BasedLocation = "" << MD5Util.computeMD5(multipartFile.getInputStream())
         md5BasedLocation.insert(2, File.separator)
         md5BasedLocation.insert(5, File.separator)

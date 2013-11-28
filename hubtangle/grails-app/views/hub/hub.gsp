@@ -26,7 +26,9 @@
 	        		
 	        		<!-- Render each entry -->
 	        		<g:each in="${hub.entries}" var="e">
-		        		<g:render template="${e.getRenderTemplateName()}" bean="${e}" var="entry" />
+                        <div id="highlight-${e.id}"
+		        		    <g:render template="${e.getRenderTemplateName()}" bean="${e}" var="entry" />
+                        </div>
 	        		</g:each>
 					
 					<!-- page-navigation -->

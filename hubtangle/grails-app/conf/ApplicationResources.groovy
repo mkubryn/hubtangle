@@ -17,7 +17,7 @@ modules = {
 		resource url: 'js/poshytip-1.1/src/jquery.poshytip.min.js', disposition: 'head'
 		
 		resource url: 'js/prettyPhoto/js/jquery.prettyPhoto.js', disposition: 'head'
-		resource url: 'js/prettyPhoto/css/prettyPhoto.css', disposition: 'head'
+		resource url: 'js/prettyPhoto/css/prettyPhoto.css', disposition: 'head', media: 'screen'
 		
 		resource url: 'css/superfish.css', disposition: 'head'
 		resource url: 'js/superfish-1.4.8/js/hoverIntent.js', disposition: 'head'

@@ -813,7 +813,9 @@ footer h6 {
 
 #publishForm {
 	padding-top: 20px;	
+    font-size: 14px;
 }
+
 
 #createPostRespone {
 	color: red;
@@ -847,6 +849,15 @@ footer h6 {
 .continueButton:HOVER {
 	color: black;
 }
+
+#imageUploadBox {
+    padding-bottom: 20px;
+}
+
+#imageUploadBox .fileinput {
+    padding-bottom: 20px;
+}
+
 #imageUploadPreviewBox {
     display: inline-block;
     white-space: nowrap;

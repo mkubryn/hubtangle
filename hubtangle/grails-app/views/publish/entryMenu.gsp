@@ -27,7 +27,37 @@
 					<form name="chooseEntryTypeForm" action="${request.contextPath}/publish/entry" method="get">
 						
 						<input type="hidden" name="hub" value="${hubId}"/>
-						
+
+
+                           <!--   CONSIDER THIS (FOR MOBILE DEVICES)
+                        <div style="margin-top: 30px; margin-bottom: 30px;">
+
+                            <div>
+                                <span style="padding-bottom: 10px;">
+                                    <g:render template="entryTypeChoose" model="[entryType: 'post', icon: 'mono-icons/paperpencil32.png']"/>
+                                </span style="padding-bottom: 10px;">
+                                <span style="padding-bottom: 10px;">
+                                    <g:render template="entryTypeChoose" model="[entryType: 'image', icon: 'mono-icons/paperphoto32.png']"/>
+                                </span style="padding-bottom: 10px;">
+                                <span style="padding-bottom: 10px;">
+                                    <g:render template="entryTypeChoose" model="[entryType: 'link', icon: 'mono-icons/paperphoto32.png']"/>
+                                </span style="padding-bottom: 10px;">
+                                <span style="padding-bottom: 10px;">
+                                    <g:render template="entryTypeChoose" model="[entryType: 'video', icon: 'mono-icons/video32.png']"/>
+                                </span style="padding-bottom: 10px;">
+                            </div>
+
+                            <div style="float: right;">
+                                <div class="continueButton" onclick="submit()">
+                                    <img alt="continue" src="${resource(dir: 'img', file: 'mono-icons/arrowright38.png')}"
+                                         style="padding-right: 20px;"/>
+                                    <br> Continue
+                                </div>
+                            </div>
+                        </div>
+                               -->
+
+
 						<table class="entryMenuTable">
 							<tr> 
 								<td>
@@ -47,7 +77,7 @@
 								</td>
 							</tr>
 							<tr>
-								<th colspan="4" style="text-align: right;">
+								<th colspan style="padding-bottom: 10px;"="4" style="text-align: right;">
 									<div class="continueButton" onclick="submit()">
 										<img alt="continue" src="${resource(dir: 'img', file: 'mono-icons/arrowright38.png')}" 
 											style="padding-right: 20px;"/>

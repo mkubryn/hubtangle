@@ -11,6 +11,7 @@ class DownloadController {
 
     def download() {
         def dsFile = DsFile.get(params.id)
+
         if(dsFile) {
             sendFileInResponse(response, dsFile)
         }

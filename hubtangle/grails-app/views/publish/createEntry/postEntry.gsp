@@ -29,7 +29,7 @@
 					</div>
 					
 					<g:formRemote id="publishForm" name="publishForm" url="[controller: 'publish', action:'saveEntry', id: hubId]" 
-						update="createPostRespone" before="alert();">
+						update="createPostRespone">
 					
 						<!-- Target entry type -->
 						<input type="hidden" name="type" value="post" />

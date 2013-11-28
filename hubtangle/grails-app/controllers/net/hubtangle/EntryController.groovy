@@ -26,7 +26,7 @@ class EntryController {
 	 * Handles show entry requests. Please refer to UrlMappings.groovy
 	 */
 	def showEntry() {
-		def entryId = params.entryId
+		def entryId = params.entryId as Long
 		def type = params.type
 		
 		if(!hubService.canViewEntry(entryId)) {

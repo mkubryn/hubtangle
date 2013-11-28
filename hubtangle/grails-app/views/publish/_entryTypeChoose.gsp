@@ -1,6 +1,6 @@
 
 <input  type="radio" name="type" value="${entryType}" id="${entryType}Entry" onchange="${remoteFunction(
-										            action:'axEntryDescription/' + params.hub,
+										            action:'axEntryDescription',
 										            update:'page-content', 
 										            params:'jQuery(this).serialize()',
 													before: 'showSpinner(\'page-content\')' )}"/>            

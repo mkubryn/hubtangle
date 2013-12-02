@@ -30,13 +30,13 @@ import static javax.servlet.http.HttpServletResponse.*;
 class PublishController {
 
 	def springSecurityService
-	def messageSource
 	def hubService
 	
 	/**
 	 * Renders entry creation menu or delegates to specific entry creation view, 
 	 * for example <code>postEntryCreate</code> view
 	 */
+    @Secured(['ROLE_USER'])
     def entry() { 
 		// ger required params
 		def hubId = asLong(params.hub)
@@ -62,9 +62,24 @@ class PublishController {
 	 * Renders hub creation menu
 	 * @return
 	 */
+    @Secured(['ROLE_USER'])
 	def hub() {
-		println "publishing entry on hub " + params['hub']
+		render(view: 'createHub')
 	}
+
+    def saveHub() {
+
+        def hub = new Hub(description: params.description, name: params.name, dateCreated: new Date())
+
+        hub = hubService.saveHub(hub)
+
+        if (hub.hasErrors())  {
+            render(view: "validationErrors", model: [bean: hub])
+            return
+        }
+
+        render ControllerUtils.createJsRedirector("/hubtangle/hub/${hub.id}")
+    }
 	
 	/**
 	 * Handles entry creation requests. Entry creation process will be delegated to 
@@ -101,7 +116,7 @@ class PublishController {
 				/*
 				 * Validation went wrong - render validation errors
 				 */
-				render(view: 'validationErrors', model: [entry: mve.modelBean])
+				render(view: 'validationErrors', model: [bean: mve.modelBean])
 			}
 			return
 		}

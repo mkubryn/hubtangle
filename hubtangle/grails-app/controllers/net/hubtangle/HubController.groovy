@@ -1,5 +1,6 @@
 package net.hubtangle
 
+import grails.converters.JSON
 import grails.plugins.springsecurity.Secured;
 
 import javax.servlet.http.HttpServlet;
@@ -31,7 +32,7 @@ class HubController {
 			response.sendError(HttpServletResponse.SC_NOT_FOUND)
 			return
 		}
-		
+
 		[hub: hub]
 	}
 }

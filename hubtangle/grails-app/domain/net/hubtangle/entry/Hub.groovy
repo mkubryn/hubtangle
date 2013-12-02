@@ -40,7 +40,8 @@ class Hub {
 
 	static constraints = {
 		name unique: true
-	}
+        name size: 3..50
+    }
 	
 	static mapping = {
 	}

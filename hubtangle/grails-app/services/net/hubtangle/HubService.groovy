@@ -6,6 +6,7 @@ import net.hubtangle.model.exception.ModelValidationException
 import net.hubtangle.user.HUser
 import net.hubtangle.utils.ClassMatchingEntryMapper
 import net.hubtangle.utils.AceKeys
+import net.hubtangle.utils.ControllerUtils
 import org.springframework.security.access.AccessDeniedException
 
 class HubService {
@@ -13,6 +14,18 @@ class HubService {
     def springSecurityService
     def aclService
 	def entryMapper = new ClassMatchingEntryMapper()
+
+    def saveHub(Hub hub) {
+
+        def user = springSecurityService.getCurrentUser()
+        hub.creator = user
+
+       if (hub.save()) {
+           aclService.addAce(AceKeys.HUB_W, hub.id)
+       }
+
+        hub
+    }
 
 	/**
 	 * Creates and saves a sub type of {@link Entry} based on passed properties. 

@@ -10,6 +10,7 @@ hibernate {
     cache.region.factory_class = 'net.sf.ehcache.hibernate.EhCacheRegionFactory'
 }
 // environment specific settings
+// environment specific settings
 environments {
     development {
         dataSource {

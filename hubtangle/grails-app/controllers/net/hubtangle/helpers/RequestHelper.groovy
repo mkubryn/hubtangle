@@ -11,4 +11,12 @@ class RequestHelper {
 			null
 		}
 	}
+
+    static def asInteger(value) {
+        try {
+            Integer.valueOf(value)
+        } catch (Exception e) {
+            null
+        }
+    }
 }

@@ -1,6 +1,6 @@
 package net.hubtangle.entry
 
-import net.hubtangle.security.acl.AclSecured
+import net.hubtangle.api.Indexed
 
 import java.text.SimpleDateFormat
 
@@ -27,16 +27,19 @@ abstract class Entry implements Comparable<Entry> {
 	/**
 	 * Entry title
 	 */
+    @Indexed
 	String title
 	
 	/**
 	 * Creation date
 	 */
+    @Indexed
 	Date dateCreated
 	
 	/**
 	 * Entry description
 	 */
+    @Indexed
 	String description
 	
 	/*
@@ -54,6 +57,7 @@ abstract class Entry implements Comparable<Entry> {
 		 * Each subclass should have it's own sub-table
 		 */
 		tablePerHierarchy false
+        dateCreated index: 'entry_date_created_idx'
 	}
 	
 	@Transient
@@ -90,6 +94,4 @@ abstract class Entry implements Comparable<Entry> {
 	def entryIsEarlierThan(anotherEntry) {
 		dateCreated.compareTo(anotherEntry.dateCreated)
 	}
-
-
 }

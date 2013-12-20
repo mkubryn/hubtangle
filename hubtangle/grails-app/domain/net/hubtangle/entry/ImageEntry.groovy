@@ -1,5 +1,7 @@
 package net.hubtangle.entry
 
+import net.hubtangle.api.Indexed
+
 /**
  * Represents an image entry
  * 

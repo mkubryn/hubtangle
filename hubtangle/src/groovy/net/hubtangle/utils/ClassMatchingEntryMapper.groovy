@@ -11,6 +11,7 @@ import org.codehaus.groovy.util.StringUtil;
  * @author mkubryn
  *
  */
+@Singleton
 class ClassMatchingEntryMapper {
 
 	def map(Map props) {

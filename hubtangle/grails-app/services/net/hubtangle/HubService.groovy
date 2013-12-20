@@ -1,28 +1,28 @@
 package net.hubtangle
 
+
+import net.hubtangle.api.security.acl.Relations
 import net.hubtangle.entry.Entry;
 import net.hubtangle.entry.Hub
 import net.hubtangle.model.exception.ModelValidationException
 import net.hubtangle.user.HUser
 import net.hubtangle.utils.ClassMatchingEntryMapper
-import net.hubtangle.utils.AceKeys
-import net.hubtangle.utils.ControllerUtils
 import org.springframework.security.access.AccessDeniedException
 
 class HubService {
 
     def springSecurityService
-    def aclService
-	def entryMapper = new ClassMatchingEntryMapper()
+	def entryMapper = ClassMatchingEntryMapper.instance
+    def relationService
 
     def saveHub(Hub hub) {
-
         def user = springSecurityService.getCurrentUser()
         hub.creator = user
 
-       if (hub.save()) {
-           aclService.addAce(AceKeys.HUB_W, hub.id)
-       }
+        if (hub.save()) {
+           relationService.createRelation(Relations.WRITABLE, hub.id, user.id)
+           relationService.createRelation(Relations.SUBSCRIPTION, hub.id, user.id)
+        }
 
         hub
     }
@@ -61,7 +61,7 @@ class HubService {
 		// mapper creates entry throws an exception
 		Entry newEntry = entryMapper.map(entryData)
 
-		newEntry.author = HUser.get(aclService.getCurrentUserId())
+		newEntry.author = HUser.get(getCurrentUserId())
 		newEntry.hub = Hub.get(hubId)
 
 		// validate entry
@@ -70,8 +70,9 @@ class HubService {
 		}
 
         newEntry.save(failOnError: true)
-        aclService.addAce(AceKeys.ENTRY_R, newEntry.getId())
-        aclService.addAce(AceKeys.ENTRY_W, newEntry.getId())
+
+        relationService.createRelation(Relations.READABLE, newEntry.id, getCurrentUserId())
+        relationService.createRelation(Relations.WRITABLE, newEntry.id, getCurrentUserId())
 
         newEntry
 	}
@@ -82,7 +83,7 @@ class HubService {
 	 * @return true if user has right to post on hub, false otherwise
 	 */
     def canPostOnHub(hubId) {
-        aclService.hasAce(AceKeys.HUB_W, hubId)
+        relationService.relationExists(Relations.WRITABLE, hubId, getCurrentUserId())
 	}
 	
 	/**
@@ -90,8 +91,48 @@ class HubService {
 	 * @param entryId entry identifier
 	 * @return true or false
 	 */
-	def canViewEntry(entryId) {
-        //aclService.hasAce(AceKeys.ENTRY_R, entryId)
+	def canViewEntry(Long entryId) {
+       // relationService.relationExists(Relations.READABLE, hubId, userId
         true
+    }
+
+    /**
+     * Creates a subscription of passed hub (of passed id) to the currently authenticated user
+     *
+     * @param hubId identifier of a hub to subscribe
+     * @return
+     */
+    def subscribeHub(Long hubId) {
+        if(!hubId) {
+            throw  new IllegalArgumentException('Hub id must not be null')
+        }
+
+        if(!Hub.exists(hubId)){
+            throw new IllegalArgumentException('Hub not found')
+        }
+
+        def userId = getCurrentUserId()
+
+//        if(!relationService.relationExists(Relations.READABLE, hubId, userId)) {
+//            throw new IllegalArgumentException('User has no rights to read hub with id ${hubId}')
+//        }
+
+        relationService.createRelation(Relations.SUBSCRIPTION, hubId, userId)
+    }
+
+    def isSubscribingHub(Long hubId) {
+        if(!springSecurityService.isLoggedIn()) {
+            return false
+        }
+
+        relationService.relationExists(Relations.SUBSCRIPTION, hubId, getCurrentUserId())
+    }
+
+    private getCurrentUserId() {
+        def userId = springSecurityService.getCurrentUser().id
+        if(!userId) {
+            throw new IllegalStateException("Asked for user id without authenticated user in context!")
+        }
+        userId
     }
 }

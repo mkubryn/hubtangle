@@ -12,7 +12,7 @@
 			
 			<layout:include template="logo" />
 			<layout:include template="navigation" />
-			<layout:include template="homepage/slider"/>
+			%{--<layout:include template="homepage/slider"/>--}%
 
 		</div>
 	</header>
@@ -33,6 +33,11 @@
 				<g:each in="${hubMap.keySet()}" var="signature">
 					<li><a href="#" data-filter=".${signature}">${hubMap[signature].name}</a></li>
 				</g:each>
+
+                <li><a href="#" data-filter=".add-more">
+                        <img style="vertical-align: text-bottom" alt="createpost" src="${resource(dir: 'img', file: 'mono-icons/plus16.png')}"/>
+                    </a>
+                </li>
 				
 			</ul>
 
@@ -62,7 +67,7 @@
 		<!-- ENDS featured -->
 		</div>
 		<!-- ENDS WRAPPER -->
-	</div>       _GrailsBootstrap
+	</div>
 	<!-- ENDS MAIN -->
 </body>
 </html>

@@ -1,11 +1,11 @@
 package net.hubtangle.entry
 
+import net.hubtangle.api.Indexed
 import net.hubtangle.user.HUser
-import net.hubtangle.security.acl.AclSecured;
 
 /**
  * 
- * Represents a {@link Hub}.
+ * Represents a {@link Hub}. This class should be as lightweight as possible.
  * @author mkubryn
  *
  */
@@ -14,29 +14,25 @@ class Hub {
 	/**
 	 * Name of this {@link Hub}.
 	 */
+    @Indexed
 	String name
 
 	/**
 	 * Text describing this {@link Hub}.
 	 */
+    @Indexed
 	String description
 
 	/**
 	 * This {@link Hub} creation date
 	 */
+    @Indexed
 	Date dateCreated
-
-	/**
-	 * Entries of this {@link Hub}
-	 */
-	SortedSet<Entry> entries
 	
 	/**
 	 * {@link HUser} who created this {@link Hub}
 	 */
 	static belongsTo = [creator: HUser]
-	
-	static hasMany = [entries: Entry]
 
 	static constraints = {
 		name unique: true

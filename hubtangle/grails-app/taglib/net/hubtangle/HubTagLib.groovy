@@ -11,16 +11,35 @@ class HubTagLib {
 	 * @attr hubId REQUIRED the hub id
 	 */
 	def ifUserCanPostOnHub = { attrs, body ->
-
-
-		String hubId = attrs.hubId
-        if(!attrs) {
-            throw new AssertionError("You must provide hubId parameter")
-        }
+		String hubId = getHubId(attrs)
 
 		if (hubService.canPostOnHub(Long.parseLong(hubId))) {
 			out << body()
 		}
 
+    }
+
+    def ifUserIsSubscribingHub = { attrs, body ->
+        def hubId = getHubId(attrs)
+
+        if(hubService.isSubscribingHub(hubId)) {
+            out << body()
+        }
+    }
+
+    def ifUserIsNotSubscribingHub = { attrs, body ->
+        def hubId = getHubId(attrs)
+
+        if(!hubService.isSubscribingHub(hubId)) {
+            out << body()
+        }
+    }
+
+    private getHubId(attrs) {
+        String hubId = attrs.hubId
+        if(!attrs) {
+            throw new AssertionError("You must provide hubId parameter")
+        }
+        hubId as Long
     }
 }

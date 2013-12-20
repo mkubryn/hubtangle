@@ -25,7 +25,7 @@
 	        	<div id="posts-list" class="cf">        	
 	        		
 	        		<!-- Render each entry -->
-	        		<g:each in="${hub.entries}" var="e">
+	        		<g:each in="${entries}" var="e">
                         <div id="highlight-${e.id}"
 		        		    <g:render template="${e.getRenderTemplateName()}" bean="${e}" var="entry" />
                         </div>
@@ -33,8 +33,13 @@
 					
 					<!-- page-navigation -->
 					<div class="page-navigation cf">
-						<div class="nav-next"><a href="#">&#8592; Older Entries </a></div>
-						<div class="nav-previous"><a href="#">Newer Entries &#8594;</a></div>
+                        <g:if test="${previousPage}">
+                            <div class="nav-previous"><a href="?page=${previousPage}">Newer Entries &#8594;</a></div>
+                        </g:if>
+
+                        <g:if test="${nextPage}">
+                            <div class="nav-next"><a href="?page=${nextPage}">&#8592; Older Entries </a></div>
+                        </g:if>
 					</div>
 					<!--ENDS page-navigation -->
 				
@@ -59,10 +64,20 @@
 			        			</a>
 	        				</div>
 						</sec:ifUserCanPostOnHub>
+
+                        <sec:ifUserIsNotSubscribingHub hubId="${hub.id}">
+                            <div class="hubFeatureButton">
+                                <a href="subscribe/${hub.id}/">
+                                    <img alt="subscribe this hub" src="${resource(dir: 'img', file: 'mono-icons/plus32.png')}"/>
+                                    Subscribe this hub
+                                </a>
+                            </div>
+                        </sec:ifUserIsNotSubscribingHub>
+
 						<div class="hubFeatureButton">
 			        		<a href="#">
 				        		<img alt="subscribeRss" src="${resource(dir: 'img', file: 'mono-icons/rss32.png')}"/> 
-								Subscribe RSS
+								RSS
 			        		</a>
 	        			</div>
 	        			<h4></h4>

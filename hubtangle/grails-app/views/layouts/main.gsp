@@ -22,10 +22,21 @@
 
 		<body class="${pageProperty( name:'body.class' )}">
 			<!-- Flash -->
-			<g:if test="${flash.message}">
-				<div id="flashMessage"> <h1>${flash.message}</h1></div>
-			</g:if>
-			
+            <g:if test="${flash.message}">
+                <div id="flashBarWrapper">
+                    <div id="flashBar">
+                        <span>${flash.message}</span>
+                        <span id="closeHint"><a href="#">close</a></span>
+                    </div>
+                </div>
+            </g:if>
+
+            <script>
+                $('#flashBar').click(function() {
+                    $('#flashBar').css("display","none");
+                });
+            </script>
+
 			<!-- Here will be put the main content of subsites -->
 			<g:layoutBody />
 			<r:layoutResources />
@@ -35,13 +46,13 @@
 		<!-- FOOTER -->
 		<footer>
 			<div class="wrapper cf">
-			
+
 				<!-- widgets -->
 				<ul  class="widget-cols cf">
 					<li class="first-col">
 						
 						<div class="widget-block">
-							<h4>RECENT POSTS</h4>
+							<h4>Recommnded to You</h4>
 							<div class="recent-post cf">
 								<a href="#" class="thumb"><img src="${resource(dir: 'img', file: 'dummies/54x54.gif')}"/></a>
 								<div class="post-head">
@@ -64,40 +75,40 @@
 					</li>
 					
 					<li class="second-col">
-						
+
 						<div class="widget-block">
-							<h4>ABOUT</h4>
-							<p>Folder it's completely free this means you don't have to pay anything <a href="http://luiszuno.com/blog/license" tar >read license</a>.</p> 
+							<h4>About us</h4>
+							<p>Folder it's completely free this means you don't have to pay anything <a href="http://luiszuno.com/blog/license" tar >read license</a>.</p>
 							<p>Visit <a href="http://templatecreme.com/" >Template Creme</a> and find the most beautiful free templates up to date.</p>
+                            <a href="#" class="load">load message</a>
 						</div>
-						
+
 					</li>
-					
+
 					<li class="third-col">
 						
 						<div class="widget-block">
-							<div id="tweets" class="footer-col tweet">
-		         				<h4>TWITTER WIDGET</h4>
-		         			</div>
+							<div id="recent-hubs" class="footer-col">
+                                <h4>Recently updated hubs</h4>
+                                <ul>
+                                    <li class="cat-item"><a href="#" >Cats</a></li>
+                                    <li class="cat-item"><a href="#" >Improve your english</a></li>
+                                </ul>		         			</div>
 		         		</div>
 		         		
 					</li>
 					
 					<li class="fourth-col">
 						
-						<div class="widget-block">
-							<h4>CATEGORIES</h4>
+						<div id="popular-hubs" class="widget-block">
+							<h4>Popular hubs</h4>
 							<ul>
-								<li class="cat-item"><a href="#" >Design</a></li>
-								<li class="cat-item"><a href="#" >Photo</a></li>
-								<li class="cat-item"><a href="#" >Art</a></li>
-								<li class="cat-item"><a href="#" >Game</a></li>
-								<li class="cat-item"><a href="#" >Film</a></li>
-								<li class="cat-item"><a href="#" >TV</a></li>
+								<li class="cat-item"><a href="#" >Java</a></li>
+								<li class="cat-item"><a href="#" >Photography</a></li>
 							</ul>
 						</div>
 		         		
-					</li>	
+					</li>
 				</ul>
 				<!-- ENDS widgets -->	
 				

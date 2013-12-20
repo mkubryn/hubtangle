@@ -4,6 +4,8 @@ class UrlMappings {
 
         "/"(controller: "home", action: "index")
 
+        "/welcome"(controller: "home", action: "welcome")
+
 		/*
 		 * Mapping for hubs
 		 */

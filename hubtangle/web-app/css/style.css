@@ -896,3 +896,96 @@ footer h6 {
 .tightWrapper .form-poshytip{
     width: 100% !important;
 }
+
+#flashBarWrapper {
+    width: 100%;
+}
+
+#flashBar {
+    margin-left: auto;
+    margin-right: auto;
+    width:100%;
+    background: #f8f5f2 url(img/meta-bg.png) repeat-y top right;
+    text-align:center;
+    padding: 15px;
+    border-bottom: 1px solid #cb5432;
+
+    z-index: 9999;
+    margin-top: 0px;
+    position: fixed;
+    top:0;
+    right:0;
+}
+
+#welcomeLoginBox #login input {
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    -webkit-appearance: none;
+}
+
+#welcomeLoginBox #login {
+    margin: 50px auto;
+    width: 400px;
+}
+
+#welcomeLoginBox #login h2 {
+    background-color: #cb5432;
+    -webkit-border-radius: 20px 20px 0 0;
+    -moz-border-radius: 20px 20px 0 0;
+    border-radius: 20px 20px 0 0;
+    color: #fff;
+    font-size: 28px;
+    padding: 20px 26px;
+    width: 100%;
+}
+
+#welcomeLoginBox #login h2 span[class*="fontawesome-"] {
+    margin-right: 14px;
+}
+
+#welcomeLoginBox #login fieldset {
+    background-color: #fff;
+    -webkit-border-radius: 0 0 20px 20px;
+    -moz-border-radius: 0 0 20px 20px;
+    border-radius: 0 0 20px 20px;
+    padding: 20px 26px;
+    width: 100%;
+}
+
+#welcomeLoginBox #login fieldset p {
+    color: #777;
+    margin-bottom: 14px;
+}
+
+#welcomeLoginBox #login fieldset p:last-child {
+    margin-bottom: 0;
+}
+
+#welcomeLoginBox #login fieldset input {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+#welcomeLoginBox #login fieldset input[type="userLogin"], #login fieldset input[type="password"] {
+    background-color: #eee;
+    color: #777;
+    padding: 4px 10px;
+    width: 328px;
+}
+
+#welcomeLoginBox #login fieldset input[type="submit"] {
+    background-color: #33cc77;
+    color: #fff;
+    display: block;
+    margin: 0 auto;
+    padding: 4px 0;
+    width: 100px;
+}
+
+#welcomeLoginBox #login fieldset input[type="submit"]:hover {
+    background-color: #28ad63;
+}

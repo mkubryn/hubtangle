@@ -1,6 +1,8 @@
 package net.hubtangle
 
-import net.hubtable.*;
+import net.hubtable.*
+import net.hubtangle.api.security.acl.Relations
+import net.hubtangle.entry.Entry;
 import net.hubtangle.entry.Hub;
 
 /**
@@ -10,34 +12,35 @@ import net.hubtangle.entry.Hub;
  */
 class HomeController {
 
-    def redisService
+    def relationService
+    def springSecurityService
 
-	def dsServerClientService
-	def configurationService
+    def searchService
 
     def index() {
 
-		def hubMap = Hub.getAll().collectEntries { hub ->
-			[hub.getSignature(), hub]
-		}
+        println searchService.index(Entry.get(1))
 
-		def lastEntries = getRecentEntries(hubMap)
-		
-		render(view: "homepage", model: [hubMap: hubMap, lastEntries: lastEntries])
-	}
-	
-	private getRecentEntries(hubMap) {
-		def entriesList = new TreeSet()
-		
-		hubMap.each { signature, hub ->
-			
-			if(hub.entries.size()) {
-				hub.entries.each {
-					entriesList.add(it)
-				}
-			}
-		}
+        if(!springSecurityService.isLoggedIn()) {
+            render(view: "homepage", model: [hubMap: [:], lastEntries: []])
+            return
+        }
 
-		entriesList
+        def hubIds = relationService.getRelations(Relations.SUBSCRIPTION, springSecurityService.getCurrentUser().id)
+
+        def entrs = Entry.createCriteria().list(max: grailsApplication.config.ht.homepage.last_entries.limit) {
+            'in'('hub.id', hubIds)
+            order('dateCreated', 'desc')
+        }
+
+        def hubMap = entrs.collectEntries { Entry entry ->
+            [(entry.hub.getSignature()): entry.hub]
+        }
+
+		render(view: "homepage", model: [hubMap: hubMap, lastEntries: entrs])
 	}
+
+    def welcome() {
+       render(view: 'welcome')
+    }
 }

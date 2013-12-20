@@ -94,6 +94,8 @@ grails.plugins.springsecurity.authority.className = 'net.hubtangle.auth.SecRole'
 
 // testowy props
 ht.foo.bar = "hellol!"
+ht.homepage.last_entries.limit=10
+ht.hub.enties.per.page = 3
 
 
 environments {
@@ -101,7 +103,7 @@ environments {
         grails.logging.jul.usebridge = true
 
         ht.cluster.dataserver.uri = "http://localhost:8090/dataserver"
-
+        ht.cluster.solr.uri = "http://localhost:8983/solr"
     }
     production {
         grails.logging.jul.usebridge = false
@@ -131,3 +133,27 @@ grails {
         //masterName = "mymaster" // the name of a master the sentinel cluster is configured to monitor
     }
 }
+
+// Uncomment and edit the following lines to start using Grails encoding & escaping improvements
+
+/* remove this line 
+// GSP settings
+grails {
+    views {
+        gsp {
+            encoding = 'UTF-8'
+            htmlcodec = 'xml' // use xml escaping instead of HTML4 escaping
+            codecs {
+                expression = 'html' // escapes values inside null
+                scriptlet = 'none' // escapes output from scriptlets in GSPs
+                taglib = 'none' // escapes output from taglibs
+                staticparts = 'none' // escapes output from static template parts
+            }
+        }
+        // escapes all not-encoded output at final stage of outputting
+        filteringCodecForContentType {
+            //'text/html' = 'html'
+        }
+    }
+}
+remove this line */

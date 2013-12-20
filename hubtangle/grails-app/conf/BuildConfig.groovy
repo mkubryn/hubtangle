@@ -65,6 +65,6 @@ grails.project.dependency.resolution = {
 		compile ":rest:0.7"
         compile ":redis:1.4.2"
         compile ":uploadr:0.8.1.1"
-
+        compile ":rabbitmq:1.0.0"
     }
 }

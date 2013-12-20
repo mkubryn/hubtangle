@@ -74,6 +74,8 @@ class HubService {
         relationService.createRelation(Relations.READABLE, newEntry.id, getCurrentUserId())
         relationService.createRelation(Relations.WRITABLE, newEntry.id, getCurrentUserId())
 
+        rabbitSend 'entity.created.topic', 'all', newEntry
+
         newEntry
 	}
 	

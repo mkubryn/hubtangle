@@ -5,7 +5,7 @@ package net.hubtangle.user
  * @author mkubryn
  *
  */
-class HUser {
+class HUser implements Serializable {
 
 	String username
 	

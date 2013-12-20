@@ -157,3 +157,18 @@ grails {
     }
 }
 remove this line */
+
+rabbitmq {
+    connectionfactory {
+        username = 'guest'
+        password = 'guest'
+        hostname = 'localhost'
+    }
+
+    queues = {
+        exchange name: 'entity.created.topic', type: topic, durable: false, {
+            searchIndexQueue durable: true, binding: 'all'
+        }
+
+    }
+}

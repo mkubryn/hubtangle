@@ -37,7 +37,10 @@ class PublishController {
 	 * for example <code>postEntryCreate</code> view
 	 */
     @Secured(['ROLE_USER'])
-    def entry() { 
+    def entry() {
+
+        println 'Request to save hub. params: ' + params
+
 		// ger required params
 		def hubId = asLong(params.hub)
 		def type = params.type

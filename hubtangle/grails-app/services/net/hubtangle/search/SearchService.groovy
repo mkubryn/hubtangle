@@ -17,6 +17,8 @@ import java.lang.reflect.Field
 @Transactional
 class SearchService implements InitializingBean {
 
+    static rabbitQueue = 'searchIndexQueue'
+
     def configurationService
     def restClient
 
@@ -29,6 +31,11 @@ class SearchService implements InitializingBean {
         log.debug("Indexing: ${model}")
 
         def documentJson = prepareSolrDocumentJson(model)
+        if(!documentJson) {
+            // nothing to index
+            return
+        }
+
         log.debug("Sending document to Solr: $documentJson")
 
         // index is very fast (~1ms)
@@ -50,15 +57,23 @@ class SearchService implements InitializingBean {
 
     private prepareSolrDocumentJson(model) {
         def indexedFields = SearchUtils.getSeachableProperties(model)
+        if(indexedFields.size() == 0) {
+            return null
+        }
 
-        Long modelId = model.id
-        String clazz = model.class.simpleName
-
-        indexedFields['id'] = "${modelId}::${clazz}"
-        indexedFields['clazz'] = clazz
+        indexedFields['id'] = model.id as String
+        indexedFields['clazz'] = model.class.name
 
         def json = indexedFields as JSON
         json as String
+    }
+
+    /**
+     * Handles message from 'searchIndexQueue' queue and indexes it's payload
+     * @param message
+     */
+    void handleMessage(message) {
+        index(message)
     }
 
     private getSolrUri() {

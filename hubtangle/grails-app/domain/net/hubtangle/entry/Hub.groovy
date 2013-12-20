@@ -9,7 +9,7 @@ import net.hubtangle.user.HUser
  * @author mkubryn
  *
  */
-class Hub {
+class Hub implements Serializable {
 
 	/**
 	 * Name of this {@link Hub}.

@@ -12,7 +12,7 @@ import net.hubtangle.user.HUser;
  * Represents an abstract entry. Entries belong to hubs
  * @author mkubryn
  */
-abstract class Entry implements Comparable<Entry> {
+abstract class Entry implements Comparable<Entry>, Serializable {
 
 	/**
 	 * Author of this antry

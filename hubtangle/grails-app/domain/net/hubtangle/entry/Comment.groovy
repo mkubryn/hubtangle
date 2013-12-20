@@ -3,7 +3,7 @@ package net.hubtangle.entry
 import net.hubtangle.api.Indexed
 import net.hubtangle.user.HUser
 
-class Comment {
+class Comment implements Serializable {
 
     @Indexed
     String content

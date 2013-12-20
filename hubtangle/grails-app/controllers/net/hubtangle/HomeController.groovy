@@ -18,9 +18,6 @@ class HomeController {
     def searchService
 
     def index() {
-
-        println searchService.index(Entry.get(1))
-
         if(!springSecurityService.isLoggedIn()) {
             render(view: "homepage", model: [hubMap: [:], lastEntries: []])
             return

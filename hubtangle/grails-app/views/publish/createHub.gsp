@@ -21,7 +21,7 @@
 <div id="main">
     <div class="wrapper cf">
         <div class="tightWrapper">
-            <h1><g:message code="publish.hub.title"/></h1>
+            <h1><g:message code="publish.hub.header"/></h1>
 
             <div id="ajaxResponse" class="cf "></div>
 
@@ -29,13 +29,13 @@
                           update="ajaxResponse" before="showSpinner('ajaxResponse')">
 
                 <p>
-                    <label for="name" ><g:message code="publish.hub.title"/></label>
-                    <input name="name"  id="publish-image-title" type="text" class="form-poshytip" title="Enter hub name" />
+                    <label for="title" ><g:message code="publish.hub.title"/></label>
+                    <input name="title"  id="publish-image-title" type="text" class="form-poshytip" title="Enter hub title" />
                 </p>
 
                 <p>
-                    <label for="description"><g:message code="publish.entry.image.description"/> </label>
-                    <textarea name="description" id="publish-image-description" rows="3" cols="10" class="form-poshytip" title="Enter image description"></textarea>
+                    <label for="description"><g:message code="publish.hub.description"/> </label>
+                    <textarea name="description" id="publish-image-description" rows="3" cols="10" class="form-poshytip" title="Enter hub description"></textarea>
                 </p>
 
 

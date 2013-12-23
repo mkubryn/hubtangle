@@ -10,7 +10,7 @@ tinymce.init({
 
     save_enablewhendirty: true,
     menubar:false,
-    statusbar: false,
+    statusbar: false
 });
 
 </script>
@@ -18,6 +18,6 @@ tinymce.init({
 <script>
 function submitForm() {
 	tinymce.triggerSave();
-	document.forms[0].submit();
+	//$('.tinymce-form').submit();
 }
 </script>

@@ -7,12 +7,14 @@ import groovyx.net.http.HttpResponseDecorator
 import groovyx.net.http.Method
 import net.sf.json.JSONObject
 import org.apache.commons.io.IOUtils
+import org.slf4j.LoggerFactory
 
 /**
  * Client for communicating with restful services
  */
 class RestClient {
 
+    private static log = LoggerFactory.getLogger(this)
     final String baseUrl
 
     public RestClient(String baseUrl) {
@@ -37,8 +39,7 @@ class RestClient {
         def html = get(uri, query, uriParameters)
         def json = JSONObject.fromObject(html)
 
-        println "JSON " + json
-
+        log.info "Parsing json: $json to bean: $clazz"
         json.toBean(json, clazz)
     }
 

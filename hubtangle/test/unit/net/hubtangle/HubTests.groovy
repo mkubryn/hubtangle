@@ -15,7 +15,7 @@ class HubTests {
 
 	@Test
 	public void obtainingNonPersistentHubUniqueName() throws Exception {
-		def hub = new Hub(name: "The test hub")
+		def hub = new Hub(title: "The test hub")
 		
 		assertNotNull hub.getSignature()
 		assertEquals "non-persistent_The_test_hub", hub.getSignature()
@@ -23,7 +23,7 @@ class HubTests {
   
 	@Test
 	public void obtainingPersistentHubUniqueName() throws Exception {
-		def hub = new Hub(name: "The test hub")
+		def hub = new Hub(title: "The test hub")
 		hub.id = 1
 		
 		assertNotNull hub.getSignature()

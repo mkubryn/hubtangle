@@ -1,9 +1,11 @@
 package net.hubtangle
 
+import grails.plugins.springsecurity.Secured
 import net.hubtable.*
 import net.hubtangle.api.security.acl.Relations
 import net.hubtangle.entry.Entry;
-import net.hubtangle.entry.Hub;
+import net.hubtangle.entry.Hub
+import org.slf4j.LoggerFactory;
 
 /**
  * Controller managing home pages
@@ -12,32 +14,41 @@ import net.hubtangle.entry.Hub;
  */
 class HomeController {
 
+    def private static log = LoggerFactory.getLogger(this)
+
     def relationService
     def springSecurityService
+    def tagService
 
-    def searchService
-
+    @Secured('ROLE_USER')
     def index() {
-        if(!springSecurityService.isLoggedIn()) {
+        if (!springSecurityService.isLoggedIn()) {
             render(view: "homepage", model: [hubMap: [:], lastEntries: []])
             return
         }
 
-        def hubIds = relationService.getRelations(Relations.SUBSCRIPTION, springSecurityService.getCurrentUser().id)
+        def hubIds = relationService.getRelationsAsLongList(Relations.SUBSCRIPTION,
+                springSecurityService.getCurrentUser().id)
 
         def entrs = Entry.createCriteria().list(max: grailsApplication.config.ht.homepage.last_entries.limit) {
             'in'('hub.id', hubIds)
             order('dateCreated', 'desc')
         }
 
+        // mapping: hubSignature - hub
         def hubMap = entrs.collectEntries { Entry entry ->
             [(entry.hub.getSignature()): entry.hub]
         }
 
-		render(view: "homepage", model: [hubMap: hubMap, lastEntries: entrs])
-	}
+        // mapping entryId - tags
+        def tagMap = entrs.collectEntries { Entry entry ->
+            [(entry.id): tagService.getTagsForModel(entry)]
+        }
+
+        render(view: "homepage", model: [hubMap: hubMap, lastEntries: entrs, tagMap: tagMap])
+    }
 
     def welcome() {
-       render(view: 'welcome')
+        render(view: 'welcome')
     }
 }

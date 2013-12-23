@@ -1,27 +1,17 @@
 package net.hubtangle
 
-import java.lang.reflect.UndeclaredThrowableException;
+import grails.plugins.springsecurity.Secured
+import net.hubtangle.entry.Hub
+import net.hubtangle.model.exception.ModelValidationException
+import net.hubtangle.utils.ControllerUtils
+import org.slf4j.LoggerFactory
+import org.springframework.security.access.AccessDeniedException
 
-import grails.plugins.springsecurity.Secured;
+import java.lang.reflect.UndeclaredThrowableException
 
-import javax.servlet.http.HttpServlet;
-
-import org.codehaus.groovy.grails.plugins.i18n.I18nGrailsPlugin;
-import org.slf4j.LoggerFactory;
-import org.springframework.security.access.AccessDeniedException;
-import org.springframework.validation.Errors;
-import org.springframework.validation.FieldError;
-import org.springframework.web.servlet.support.RequestContextUtils;
-
-import net.hubtangle.entry.Hub;
-import net.hubtangle.entry.PostEntry;
-import net.hubtangle.helpers.RequestHelper;
-import net.hubtangle.model.exception.ModelValidationException;
-import net.hubtangle.user.HUser;
-import net.hubtangle.utils.ControllerUtils;
-
-import static net.hubtangle.helpers.RequestHelper.*;
-import static javax.servlet.http.HttpServletResponse.*;
+import static javax.servlet.http.HttpServletResponse.SC_BAD_REQUEST
+import static javax.servlet.http.HttpServletResponse.SC_FORBIDDEN
+import static net.hubtangle.helpers.RequestHelper.asLong;
 /**
  * Controller responsible for publishing content in hubtangle
  * @author mkubryn
@@ -29,22 +19,22 @@ import static javax.servlet.http.HttpServletResponse.*;
  */
 class PublishController {
 
-	def springSecurityService
+    private static log = LoggerFactory.getLogger(this)
+
+    def springSecurityService
 	def hubService
 	
 	/**
-	 * Renders entry creation menu or delegates to specific entry creation view, 
-	 * for example <code>postEntryCreate</code> view
+	 * Renders entry creation menu
 	 */
     @Secured(['ROLE_USER'])
     def entry() {
-
-        println 'Request to save hub. params: ' + params
+        log.debug "Request to save hub. params: $params"
 
 		// ger required params
 		def hubId = asLong(params.hub)
 		def type = params.type
-		
+
 		if(!hubId) {
 			// send 404
 			response.sendError(SC_BAD_REQUEST)
@@ -63,16 +53,17 @@ class PublishController {
 	
 	/**
 	 * Renders hub creation menu
-	 * @return
 	 */
     @Secured(['ROLE_USER'])
 	def hub() {
 		render(view: 'createHub')
 	}
 
+    /**
+     * Handles hub creation requests.
+     */
     def saveHub() {
-
-        def hub = new Hub(description: params.description, name: params.name, dateCreated: new Date())
+        def hub = new Hub(description: params.description, title: params.title, dateCreated: new Date())
 
         hub = hubService.saveHub(hub)
 
@@ -85,14 +76,11 @@ class PublishController {
     }
 	
 	/**
-	 * Handles entry creation requests. Entry creation process will be delegated to 
-	 * @return
+	 * Handles entry creation requests.
 	 */
 	@Secured(['ROLE_USER'])
 	def saveEntry() {
-
-        println "Save entry: " + params
-
+        log.debug 'Save entry request. Params: $params'
 		def hubId = asLong(params.id)
 		
 		// Remove read only properties

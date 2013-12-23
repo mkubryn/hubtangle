@@ -1,6 +1,7 @@
 package net.hubtangle.entry
 
-import net.hubtangle.api.Indexed
+import groovy.transform.EqualsAndHashCode
+import net.hubtangle.api.search.Indexed
 
 import java.text.SimpleDateFormat
 
@@ -12,6 +13,7 @@ import net.hubtangle.user.HUser;
  * Represents an abstract entry. Entries belong to hubs
  * @author mkubryn
  */
+@EqualsAndHashCode
 abstract class Entry implements Comparable<Entry>, Serializable {
 
 	/**
@@ -75,9 +77,9 @@ abstract class Entry implements Comparable<Entry>, Serializable {
 	}
 	
 	/**
-	 * Provides name of a GSP template to use in the rendering process of this entry
+	 * Provides title of a GSP template to use in the rendering process of this entry
 	 * 
-	 * @return name of a GSP template to render using this entry
+	 * @return title of a GSP template to render using this entry
 	 */
 	abstract def getRenderTemplateName()
 

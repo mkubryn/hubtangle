@@ -1,12 +1,14 @@
 package net.hubtangle.entry
 
-import net.hubtangle.api.Indexed
+import groovy.transform.EqualsAndHashCode
+import net.hubtangle.api.search.Indexed
 
 /**
  * Represents a post entry
  * @author mkubryn
  *
  */
+@EqualsAndHashCode
 class PostEntry extends Entry {
 
 	/**
@@ -14,9 +16,13 @@ class PostEntry extends Entry {
 	 */
     @Indexed
 	String content
+
+    @Indexed
+    Long dsFileId
 	
     static constraints = {
-		content size: 0..3000 
+		content size: 0..3000
+        dsFileId nullable: true
     }
 
 	def getRenderTemplateName() {

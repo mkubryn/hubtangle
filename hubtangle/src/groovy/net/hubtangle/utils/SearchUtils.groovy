@@ -1,6 +1,6 @@
 package net.hubtangle.utils
 
-import net.hubtangle.api.Indexed
+import net.hubtangle.api.search.Indexed
 
 import java.lang.reflect.Field
 
@@ -10,6 +10,7 @@ import java.lang.reflect.Field
  * Created by mkubryn on 20.12.13.
  */
 class SearchUtils {
+
     /**
      * Returns map of properties annotated with Indexed annotation
      *

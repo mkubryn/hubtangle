@@ -341,7 +341,7 @@ ul.tabs a.current {
   color: #444;
   border-bottom: 1px solid #fff;
 }
-/* active tab uses a class name "current". its highlight is also done by moving the background image. */
+/* active tab uses a class title "current". its highlight is also done by moving the background image. */
 ul.tabs a.current,
 ul.tabs a.current:hover,
 ul.tabs li.current a {

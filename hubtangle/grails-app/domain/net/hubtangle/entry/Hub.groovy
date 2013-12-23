@@ -1,6 +1,7 @@
 package net.hubtangle.entry
 
-import net.hubtangle.api.Indexed
+import groovy.transform.EqualsAndHashCode
+import net.hubtangle.api.search.Indexed
 import net.hubtangle.user.HUser
 
 /**
@@ -9,13 +10,14 @@ import net.hubtangle.user.HUser
  * @author mkubryn
  *
  */
+@EqualsAndHashCode
 class Hub implements Serializable {
 
 	/**
 	 * Name of this {@link Hub}.
 	 */
     @Indexed
-	String name
+	String title
 
 	/**
 	 * Text describing this {@link Hub}.
@@ -35,14 +37,14 @@ class Hub implements Serializable {
 	static belongsTo = [creator: HUser]
 
 	static constraints = {
-		name unique: true
-        name size: 3..50
+		title unique: true
+        title size: 3..50
     }
 	
 	static mapping = {
 	}
 	
 	def getSignature() {
-		(id ? id * 13 : "non-persistent") + "_" + name.replaceAll("\\s+", "_")
+		(id ? id * 13 : "non-persistent") + "_" + title.replaceAll("\\s+", "_")
 	}
 }

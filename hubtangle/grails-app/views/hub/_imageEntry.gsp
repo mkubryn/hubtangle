@@ -1,3 +1,4 @@
+<%@ page import="net.hubtangle.utils.GspUtils" %>
 <!-- Image -->
 <article class="format-image">
 	<div class="feature-image">
@@ -15,15 +16,20 @@
 				${entry.title}
 			</a>
 			<p>
-				${entry.description}
+				${GspUtils.asHtml(entry.description)}
 			</p>
 		</div>
 
 		<div class="meta">
 			<span class="format">Image</span> <span class="user"><a
 				href="#">By ${entry.author.username}, </a></span> <span class="comments">28
-				comments</span> <span class="tags"><a href="#">tag1</a>, <a
-				href="#">tag2</a></span>
+				comments</span>
+
+            <span class="tags">
+                <g:each in="${tagMap[entry.id]}" var="tag">
+                    #<misc:link loaction="search/search?query=%23${tag}">${tag}</misc:link>
+                </g:each>
+            </span>
 		</div>
 	</div>
 </article>

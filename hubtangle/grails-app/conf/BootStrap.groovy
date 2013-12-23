@@ -57,17 +57,17 @@ class BootStrap {
 		/*
 		 * Test hubs
 		 */
-		def hub1 = new Hub(name: "Trip 2013 - Martin and Aga", 
+		def hub1 = new Hub(title: "Trip 2013 - Martin and Aga",
 			description: "Hub from our trip.", 
 			dateCreated: new Date(), creator: users[0])
 
-        def hub2 = new Hub(name: "Java",
+        def hub2 = new Hub(title: "Java",
             description: "Explore Java world.",
             dateCreated: new Date(), creator: users[1])
 
         [hub1, hub2].each {
             def hubId = it.save(failOnError: true)
-            def name = it.name
+            def name = it.title
 
             println "bootstrap: Hub $name saved with id:" + hubId.toString()
         }
@@ -78,7 +78,7 @@ class BootStrap {
             new LinkEntry(title: "Check this link", url: "http://pieniny.org/trasy", author: users[0], hub: hub1, dateCreated: new Date(), description: "Great content."),
             //new QuoteEntry(title: "Quote of the day", quoteAuthor: "Aga.", text: "Life is life.", author: users[0], hub: hub1, dateCreated: new Date(), description: "Great content."),
             new VideoEntry(url: "http://www.youtube.com/embed/5fa32SkaL6U", title: "River.", author: users[0], hub: hub1, dateCreated: new Date(), description: "Nice but expensive!"),
-            new PostEntry(title: "Few words about me.", author: users[0], hub: hub1, dateCreated: new Date(), description: "My name is..", content: "This\nis\n\t\tcontent"),
+            new PostEntry(title: "Few words about me.", author: users[0], hub: hub1, dateCreated: new Date(), description: "My title is..", content: "This\nis\n\t\tcontent"),
 
             //hub2
             new PostEntry(title: "welcome to java hub", author: users[0], hub: hub2, dateCreated: new Date(), description: "Enjoy the Java world.", content: "Yeay"),

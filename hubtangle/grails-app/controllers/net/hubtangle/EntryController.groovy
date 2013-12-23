@@ -1,5 +1,6 @@
 package net.hubtangle
 
+import grails.plugins.springsecurity.Secured
 import grails.plugins.springsecurity.SpringSecurityService
 import net.hubtangle.entry.Comment
 import net.hubtangle.helpers.RequestHelper;
@@ -7,21 +8,16 @@ import net.hubtangle.helpers.RequestHelper;
 import javax.servlet.http.HttpServletResponse;
 
 
-import net.hubtangle.entry.Entry;
-import net.hubtangle.entry.ImageEntry;
-import net.hubtangle.entry.PostEntry;
-import net.hubtangle.entry.VideoEntry;
+import net.hubtangle.entry.Entry
 
 /**
- * Controls entries
+ * Controls entries and stuff related to them
+ *
  * @author mkubryn
  */
 class EntryController {
 	
-	/** DI of {@link HubService}*/
 	def hubService
-	
-	/** DI of {@link SpringSecurityService} */
 	def springSecurityService
 	
 	/**
@@ -32,24 +28,30 @@ class EntryController {
 		def type = params.type
 		
 		if(!hubService.canViewEntry(entryId)) {
-			log.warn("[SECURITY] Access denied to entry")
+			log.warn("[SECURITY] Access denied to entry: ${entryId}")
 			response.sendError(HttpServletResponse.SC_FORBIDDEN)
 			return
 		}
 		
 		def entry = Entry.get(entryId)
+        if(!entry) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND)
+            return
+        }
 		
 		if(!entryHasType(entry, type)) {
-			log.warn("[SECURITY] Tried to access entry {} using inappropriate type")
+			log.warn("[SECURITY] Tried to access entry: ${entry} using inappropriate type: ${type}")
 			response.sendError(HttpServletResponse.SC_FORBIDDEN)
 			return
 		}
+
+        def commentsCount = Comment.countByEntry(entry)
 		
-		render (view: "show${type}Entry", model: [entry: entry])
+		render (view: "show${type}Entry", model: [entry: entry, commentsCount: commentsCount])
 	}
 
     def getComments_ajax() {
-        def entryId = RequestHelper.asLong(params.entryId)
+        def entryId = RequestHelper.asLong(params.id)
         def offset = RequestHelper.asInteger(params.offset)
         def batchSize = 2
 
@@ -66,9 +68,33 @@ class EntryController {
             order('dateCreated', 'desc')
         }
 
-        render(template: '/layouts/comments/single_comment', model: [comments: comments, offset: (offset + batchSize)])
+        render(template: '/layouts/comments/comments_group', model: [comments: comments, offset: (offset + batchSize)])
     }
-	
+
+    @Secured('ROLE_USER')
+    def createComment() {
+        def text = params.text
+        def entryId = params.entryId
+
+        if(!text || !entryId) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST)
+            return
+        }
+
+        def entry = Entry.get(entryId)
+        if(!entry) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST)
+            return
+        }
+
+        def comment = new Comment(author: springSecurityService.getCurrentUser(), dateCreated: new Date(),
+                content: text, entry: entry)
+
+        comment.save(failOnError: true)
+
+        render (template: '/layouts/comments/single_comment', model: [comment: comment])
+    }
+
 	private entryHasType(entry, type) {
 		entry.class.getName().matches(".*${type}Entry")
 	}

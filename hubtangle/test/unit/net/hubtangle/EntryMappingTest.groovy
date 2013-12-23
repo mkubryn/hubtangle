@@ -23,7 +23,7 @@ class EntryMappingTest {
 		def entry = mappper.map(props)
 		
 		assertNotNull(entry)
-		assertEquals("Not matching class name", entry.getClass(), PostEntry.class)
+		assertEquals("Not matching class title", entry.getClass(), PostEntry.class)
 		assertEquals("Not matching title", entry.title, props.title)
 	}
 	 
@@ -34,7 +34,7 @@ class EntryMappingTest {
 		def entry = mappper.map(props)
 		
 		assertNotNull(entry)
-		assertEquals("Not matching class name", entry.getClass(), ImageEntry.class)
+		assertEquals("Not matching class title", entry.getClass(), ImageEntry.class)
 		assertEquals("Not matching title", entry.title, props.title)
 		assertEquals("Not matching title", entry.url, props.url)
 	}
@@ -46,7 +46,7 @@ class EntryMappingTest {
 		def entry = mappper.map(props)
 		
 		assertNotNull(entry)
-		assertEquals("Not matching class name", entry.getClass(), LinkEntry.class)
+		assertEquals("Not matching class title", entry.getClass(), LinkEntry.class)
 		assertEquals("Not matching title", entry.title, props.title)
 		assertEquals("Not matching title", entry.url, props.url)
 	}

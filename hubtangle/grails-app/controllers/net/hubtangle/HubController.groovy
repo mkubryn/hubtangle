@@ -2,6 +2,7 @@ package net.hubtangle
 
 import grails.converters.JSON
 import grails.plugins.springsecurity.Secured
+import net.hubtangle.api.security.acl.Relations
 import net.hubtangle.entry.Entry;
 
 import javax.servlet.http.HttpServlet;
@@ -17,13 +18,13 @@ import org.slf4j.LoggerFactory;
 class HubController {
 
     def hubService
+    def tagService
 
     def index() { }
 	
 	/**
 	 * Handles show particular {@link Hub} requests
 	 */
-	@Secured(['ROLE_USER'])
 	def hub() {
 		def hub = Hub.get(asLong(params.hubId))
         if(!hub) {
@@ -40,7 +41,7 @@ class HubController {
 
         page--
 
-        def entriesPerPage = grailsApplication.config.ht.hub.enties.per.page as int
+        def entriesPerPage = grailsApplication.config.ht.hub.entries.per.page as int
         def entrySearchCriteria = Entry.createCriteria()
 
         def offset = page * entriesPerPage
@@ -50,17 +51,29 @@ class HubController {
             order('dateCreated', 'desc')
         }
 
+        // prepare tags
+        def tagMap = entries.collectEntries { entry ->
+            [(entry.id): tagService.getTagsForModel(entry)]
+        }
+
         // page numbers for pagination
         def previousPageNumber = page > 0 ? page : null
         def nextPage = (offset+entriesPerPage < countEntriesInHub(hub)) ? (page+2) : null
 
-		[hub: hub, entries: entries, previousPage: previousPageNumber, nextPage: nextPage]
+		[hub: hub, entries: entries, tagMap: tagMap, previousPage: previousPageNumber, nextPage: nextPage]
 	}
 
     @Secured(['ROLE_USER'])
     def subscribe() {
         hubService.subscribeHub(params.id as Long)
         flash.message = 'Hub subscribed!'
+        chain(action: 'hub', params: [hubId: params.id])
+    }
+
+    @Secured(['ROLE_USER'])
+    def unsubscribe() {
+        hubService.unsubscribeHub(params.id as Long)
+        flash.message = 'Hub unsubscribed!'
         chain(action: 'hub', params: [hubId: params.id])
     }
 

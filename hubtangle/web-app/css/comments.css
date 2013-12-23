@@ -246,7 +246,7 @@
 #commentform input[type="password"],
 #publishForm input[type="password"] {
   overflow: auto;
-  width: 50%;
+  width: 90%;
   margin-top: 10px;
   margin-bottom: 10px;
   overflow: hidden;

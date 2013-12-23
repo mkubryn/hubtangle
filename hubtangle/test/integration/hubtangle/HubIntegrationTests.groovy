@@ -1,5 +1,5 @@
 package hubtangle
-import net.hubtangle.*;
+
 import net.hubtangle.entry.Entry;
 import net.hubtangle.entry.Hub;
 import net.hubtangle.entry.LinkEntry;
@@ -24,7 +24,7 @@ class HubIntegrationTests {
     void saveHub() {
 		def user = getTestUser()
 		
-		def hub = new Hub(name: "Java",
+		def hub = new Hub(title: "Java",
 			description: "Explore Java world.", 
 			creator: user)
 		
@@ -36,7 +36,7 @@ class HubIntegrationTests {
 	public void saveHubWithEntries() throws Exception {
 		def user = getTestUser()
 		
-		def hub1 = new Hub(name: "Java",
+		def hub1 = new Hub(title: "Java",
 			description: "Explore Java world.", 
 			creator: user)
 		

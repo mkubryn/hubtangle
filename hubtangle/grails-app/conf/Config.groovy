@@ -11,7 +11,7 @@
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
 // }
 
-grails.project.groupId = appName // change this to alter the default package name and Maven publishing destination
+grails.project.groupId = appName // change this to alter the default package title and Maven publishing destination
 grails.mime.file.extensions = true // enables the parsing of file extensions from URLs into the request format
 grails.mime.use.accept.header = false
 grails.mime.types = [
@@ -64,11 +64,22 @@ log4j = {
     // Example of changing the log pattern for the default console appender:
     //
     appenders {
-        console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
+        console name:'stdout', layout:pattern(conversionPattern: '%p - %c{5} %m%n')
+
+        appender name: "file",
+                new org.apache.log4j.DailyRollingFileAppender(
+                        threshold: org.apache.log4j.Level.INFO,
+                        datePattern: "'.'yyyy-MM-dd",
+                        file: "/tmp/app.log",
+                        layout: pattern(conversionPattern: '[%d{yyyy-MM-dd hh:mm:ss.SSS}] %p %c{5} %m%n'))
+    }
+
+    root {
+        error 'file', 'stdout'
     }
 
     error (
-			'org.codehaus.groovy.grails.web.servlet',        // controllers
+           'org.codehaus.groovy.grails.web.servlet',        // controllers
            'org.codehaus.groovy.grails.web.pages',          // GSP
            'org.codehaus.groovy.grails.web.sitemesh',       // layouts
            'org.codehaus.groovy.grails.web.mapping.filter', // URL mapping
@@ -79,12 +90,11 @@ log4j = {
            'org.springframework',
            'org.hibernate',
            'net.sf.ehcache.hibernate',
-		   'net.hubtabgle'
     )
-		   
-	warn ('net.hubtangle')
-	info ('net.hubtangle')
-	debug ('net.hubtangle')
+
+    debug (
+            'net.hubtangle'
+    )
 }
 
 // Added by the Spring Security Core plugin:
@@ -95,7 +105,7 @@ grails.plugins.springsecurity.authority.className = 'net.hubtangle.auth.SecRole'
 // testowy props
 ht.foo.bar = "hellol!"
 ht.homepage.last_entries.limit=10
-ht.hub.enties.per.page = 3
+ht.hub.entries.per.page = 10
 
 
 environments {
@@ -130,44 +140,22 @@ grails {
 
         // use redis-sentinel cluster as opposed to a single redis server (use only if not use host/port)
         //sentinels = [ "host1:6379", "host2:6379", "host3:6379" ] // list of sentinel instance host/ports
-        //masterName = "mymaster" // the name of a master the sentinel cluster is configured to monitor
+        //masterName = "mymaster" // the title of a master the sentinel cluster is configured to monitor
     }
 }
-
-// Uncomment and edit the following lines to start using Grails encoding & escaping improvements
-
-/* remove this line 
-// GSP settings
-grails {
-    views {
-        gsp {
-            encoding = 'UTF-8'
-            htmlcodec = 'xml' // use xml escaping instead of HTML4 escaping
-            codecs {
-                expression = 'html' // escapes values inside null
-                scriptlet = 'none' // escapes output from scriptlets in GSPs
-                taglib = 'none' // escapes output from taglibs
-                staticparts = 'none' // escapes output from static template parts
-            }
-        }
-        // escapes all not-encoded output at final stage of outputting
-        filteringCodecForContentType {
-            //'text/html' = 'html'
-        }
-    }
-}
-remove this line */
 
 rabbitmq {
     connectionfactory {
         username = 'guest'
         password = 'guest'
         hostname = 'localhost'
+        retries=5
     }
 
     queues = {
         exchange name: 'entity.created.topic', type: topic, durable: false, {
             searchIndexQueue durable: true, binding: 'all'
+            tagQueue durable: true, binding: 'all'
         }
 
     }

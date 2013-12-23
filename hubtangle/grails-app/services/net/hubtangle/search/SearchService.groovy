@@ -3,28 +3,37 @@ package net.hubtangle.search
 import grails.converters.JSON
 import grails.transaction.Transactional
 import net.hubtangle.RestClient
-import net.hubtangle.api.Indexed
-import net.hubtangle.utils.AnnotationUtils
 import net.hubtangle.utils.SearchUtils
-import org.apache.http.HttpResponse
+import net.sf.json.JSONObject
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.InitializingBean
 
-import javax.servlet.http.HttpServlet
 import javax.servlet.http.HttpServletResponse
-import java.lang.annotation.Annotation
-import java.lang.reflect.Field
 
 @Transactional
 class SearchService implements InitializingBean {
+    private static log = LoggerFactory.getLogger(this)
 
     static rabbitQueue = 'searchIndexQueue'
 
     def configurationService
-    def restClient
+    RestClient restClient
 
     @Override
     void afterPropertiesSet() throws Exception {
         restClient = new RestClient(getSolrUri())
+    }
+
+    def search(String query, int maxResults=10, int offset=0) {
+
+        def result = restClient.get('/select', [q: query, wt: 'json', rows: maxResults, start: offset, indent: true])
+        def json = JSONObject.fromObject(result)
+        def docs = json.response.docs
+
+        log.debug "Solr response: '$result'"
+        log.debug "Solr serach query: '$query' docs: '$docs'"
+
+        docs
     }
 
     def index(model) {

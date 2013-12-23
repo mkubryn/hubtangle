@@ -99,18 +99,4 @@ class DsServerClientService implements InitializingBean {
 
         dsResponse
     }
-//    def test() {
-//		withHttp(uri: "http://localhost:8090") {
-//			def html = get(path : '/dataserver/r/upload', query: [q: "rest"])
-//			println html
-//		 }
-//
-//        def postBody = [foo: "bar", ala: "ma kota!"]
-//        withHttp(uri: "http://localhost:8090")  {
-//            def x = post(path: "/dataserver/r/upload", body: postBody)
-//
-//            println "post resp: " + x
-//        }
-//    }
-
 }

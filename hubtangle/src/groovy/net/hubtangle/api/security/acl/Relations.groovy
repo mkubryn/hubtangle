@@ -26,6 +26,12 @@ public enum Relations {
      * Can write
      * Is writable
      */
-    WRITABLE
+    WRITABLE,
+
+    /**
+     * Has tag
+     * Is tagged with
+     */
+    TAG,
 
 }

@@ -1,6 +1,6 @@
 package net.hubtangle.entry
 
-import net.hubtangle.api.Indexed
+import net.hubtangle.api.search.Indexed
 import net.hubtangle.user.HUser
 
 class Comment implements Serializable {

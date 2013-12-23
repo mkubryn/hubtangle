@@ -1,6 +1,7 @@
 package net.hubtangle.entry
 
-import net.hubtangle.api.Indexed
+import groovy.transform.EqualsAndHashCode
+import net.hubtangle.api.search.Indexed
 
 /**
  * Represents an image entry
@@ -8,8 +9,10 @@ import net.hubtangle.api.Indexed
  * @author mkubryn
  *
  */
+@EqualsAndHashCode
 class ImageEntry extends Entry {
 
+    @Indexed
 	Long dsFileId
 	
     static constraints = {

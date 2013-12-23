@@ -24,7 +24,10 @@ class UrlMappings {
 		"/video/$entryId" (controller: "entry", action: "showEntry") {
 			type = "Video"
 		}
-		
+        "/link/$entryId" (controller: "entry", action: "showEntry") {
+            type = "Link"
+        }
+
 		/*
 		 * Mappings for data server
 		 */

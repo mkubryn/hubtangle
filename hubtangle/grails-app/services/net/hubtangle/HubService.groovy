@@ -5,7 +5,6 @@ import net.hubtangle.api.security.acl.Relations
 import net.hubtangle.entry.Entry;
 import net.hubtangle.entry.Hub
 import net.hubtangle.model.exception.ModelValidationException
-import net.hubtangle.user.HUser
 import net.hubtangle.utils.ClassMatchingEntryMapper
 import org.springframework.security.access.AccessDeniedException
 
@@ -55,7 +54,7 @@ class HubService {
         rabbitSend 'entity.created.topic', 'all', hub
 
         def currentUserId = getCurrentUserId()
-        relationService.createRelation(Relations.WRITABLE, hub.id, currentUserId)
+        relationService.createRelation(Relations.WRITE, hub.id, currentUserId)
         relationService.createRelation(Relations.SUBSCRIPTION, hub.id, currentUserId)
         relationService.createRelation(Relations.MODERATION, hub.id, currentUserId)
     }
@@ -124,8 +123,11 @@ class HubService {
     }
 
     private afterSaveEntry(Entry newEntry) {
-        relationService.createRelation(Relations.READABLE, newEntry.id, getCurrentUserId())
-        relationService.createRelation(Relations.WRITABLE, newEntry.id, getCurrentUserId())
+        def currentUserId = getCurrentUserId()
+
+        relationService.createRelation(Relations.READ, newEntry.id, currentUserId)
+        relationService.createRelation(Relations.WRITE, newEntry.id, currentUserId)
+        relationService.createRelation(Relations.MEMBER, newEntry.hub.id, currentUserId)
 
         rabbitSend 'entity.created.topic', 'all', newEntry
     }
@@ -139,7 +141,7 @@ class HubService {
         if (!springSecurityService.isLoggedIn()) {
             return false
         }
-        relationService.relationExists(Relations.WRITABLE, hubId, getCurrentUserId())
+        relationService.relationExists(Relations.WRITE, hubId, getCurrentUserId())
     }
 
     /**
@@ -148,7 +150,7 @@ class HubService {
      * @return true or false
      */
     def canViewEntry(Long entryId) {
-        // relationService.relationExists(Relations.READABLE, hubId, userId
+        // relationService.relationExists(Relations.READ, hubId, userId
         true
     }
 
@@ -162,6 +164,15 @@ class HubService {
             return true
         }
         Entry.get(entryId)?.author?.id == getCurrentUserId()
+    }
+
+    /**
+     * Checks if currently authenticated user is moderator of hub.
+     * @param hubId hub identifier
+     * @return true or false
+     */
+    def canModerateHub(Long hubId) {
+        relationService.relationExists(Relations.MODERATION, hubId, getCurrentUserId())
     }
 
     /**
@@ -181,7 +192,7 @@ class HubService {
 
         def userId = getCurrentUserId()
 
-//        if(!relationService.relationExists(Relations.READABLE, hubId, userId)) {
+//        if(!relationService.relationExists(Relations.READ, hubId, userId)) {
 //            throw new IllegalArgumentException('User has no rights to read hub with id ${hubId}')
 //        }
 

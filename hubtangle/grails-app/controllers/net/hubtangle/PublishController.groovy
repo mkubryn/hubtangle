@@ -72,7 +72,7 @@ class PublishController {
             return
         }
 
-        render ControllerUtils.createJsRedirector("/hubtangle/hub/${hub.id}")
+        render ControllerUtils.createJsRedirector("${request.contextPath}/hub/${hub.id}")
     }
 	
 	/**
@@ -115,7 +115,7 @@ class PublishController {
 		/*
 		 * Everything was OK, redirect to entry
 		 */
-		render ControllerUtils.createJsRedirector("/hubtangle/hub/${newEntry.hub.id}#${newEntry.id}")
+		render ControllerUtils.createJsRedirector("${request.contextPath}/hub/${newEntry.hub.id}#${newEntry.id}")
 	}
 
 	/**

@@ -18,7 +18,7 @@ class TagService {
         def modelKey = getModelKey(model)
 
         tags.each { tag ->
-            relationService.createRelation(Relations.TAG, tag, modelKey)
+            relationService.createRelation(Relations.TAG, modelKey, tag)
         }
     }
 

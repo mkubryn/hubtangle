@@ -277,7 +277,7 @@ header .wrapper #home-slider {
 }
 #filter-container figure figcaption .heading {
   margin-bottom: 13px;
-  font-size: 32px;
+  font-size: 24px;
   line-height: 1.2em;
   text-transform: uppercase;
   display: block;
@@ -527,7 +527,7 @@ header .wrapper #home-slider {
 #posts-list article .box .excerpt .post-heading {
   display: block;
   font-family: 'Voltaire', Arial, sans-serif;
-  font-size: 32px;
+  font-size: 24px;
   line-height: 1.1em;
   text-shadow: 4px 4px 0 rgba(0, 0, 0, 0.1);
   margin-top: 14px;
@@ -823,25 +823,24 @@ footer h6 {
 	color: red;
 }
 
-.entryMenuTable input {
+.entryTypeChooser span {
+    display: inline-block;
+    white-space: nowrap;
+    width: 100px;
+    padding-bottom: 20px;
+}
+
+.entryTypeChooser input {
 	display: none;
 }
 
-.entryMenuTable td {
-	font-family: 'Voltaire', sans-serif;
-	font-size: 20px;
-	width: 150px;	
-	padding-top: 30px;
+.entryTypeChooserPreviewBox img {
+    width: 100%;
 }
 
-.entryMenuTable td:HOVER {
-	color: black;
-}
-
-.entryMenuTable th {
-	font-family: 'Voltaire', sans-serif;
-	font-size: 30px;
-	padding-top: 30px;
+.entryTypeChooser input[type="radio"]:checked+label {
+    color: #cb5432;
+    font-weight: bold;
 }
 
 .continueButton {
@@ -1181,4 +1180,7 @@ footer h6 {
 
 .projectImageInner img {
     max-width: 100%;
+}
+
+#emptyHubBox {
 }

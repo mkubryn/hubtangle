@@ -93,7 +93,7 @@ environments {
         grails.logging.jul.usebridge = false
         // TODO: grails.serverURL = "http://www.changeme.com"
 
-        ht.ds.filestore.dir = "/tmp/ds-filestore"
+        ht.ds.filestore.dir = "/srv/hubtangle/ds-filestore"
     }
 }
 

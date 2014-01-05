@@ -16,7 +16,7 @@
     </div>
 
     <uploadr:add controller="upload" action="upload" name="imageUploadr" fileselect=" - Click here to choose an image or drag - "
-                 direction="up" maxVisible="${maxVisible ? maxVisible : 1}" unsupported="/hubtangle/upload/warning" downloadable="false" viewable="false"
+                 direction="up" maxVisible="${maxVisible ? maxVisible : 1}" unsupported="${request.contextPath}/upload/warning" downloadable="false" viewable="false"
                  model="[]" allowedExtensions="png,jpg,gif,jpeg">
 
         <uploadr:onSuccess>

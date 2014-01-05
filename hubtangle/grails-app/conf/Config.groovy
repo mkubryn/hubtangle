@@ -70,7 +70,7 @@ log4j = {
                 new org.apache.log4j.DailyRollingFileAppender(
                         threshold: org.apache.log4j.Level.INFO,
                         datePattern: "'.'yyyy-MM-dd",
-                        file: "/tmp/app.log",
+                        file: "/srv/hubtangle/log/core.log",
                         layout: pattern(conversionPattern: '[%d{yyyy-MM-dd hh:mm:ss.SSS}] %p %c{5} %m%n'))
     }
 
@@ -107,19 +107,17 @@ ht.foo.bar = "hellol!"
 ht.homepage.last_entries.limit=10
 ht.hub.entries.per.page = 10
 
+ht.cluster.dataserver.uri = "http://localhost:8090/dataserver"
+ht.cluster.solr.uri = "http://localhost:8983/solr"
 
 environments {
     development {
+        grails.server.port.http = 9090
         grails.logging.jul.usebridge = true
-
-        ht.cluster.dataserver.uri = "http://localhost:8090/dataserver"
-        ht.cluster.solr.uri = "http://localhost:8983/solr"
     }
     production {
         grails.logging.jul.usebridge = false
         // TODO: grails.serverURL = "http://www.changeme.com"
-
-        ht.cluster.dataserver.uri = "https://tomcat-hubtangle.rhcloud.com/dataserver"
     }
 }
 

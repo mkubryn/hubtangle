@@ -28,10 +28,16 @@ class UrlMappings {
             type = "Link"
         }
 
+        /**
+         * Mappings for users
+         */
+
+        "/user/hubs/$action" (controller: "user")
+
 		/*
 		 * Mappings for data server
 		 */
-		"/download/$dsFileId" (controller: "upload", action: "download")
+		"/download/$dsFileId" (controller: "download", action: "download")
 
 		/*
 		 * Standard grails mappings

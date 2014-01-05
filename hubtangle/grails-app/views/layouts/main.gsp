@@ -18,6 +18,7 @@
 		-->
 		
 		<r:layoutResources />
+        <title>Hubtangle.</title>
 	</head>
 
 		<body class="${pageProperty( name:'body.class' )}">
@@ -53,24 +54,7 @@
 						
 						<div class="widget-block">
 							<h4>Recommnded to You</h4>
-							<div class="recent-post cf">
-								<a href="#" class="thumb"><img src="${resource(dir: 'img', file: 'dummies/54x54.gif')}"/></a>
-								<div class="post-head">
-									<a href="#">Pellentesque habitant morbi senectus</a><span> March 12, 2011</span>
-								</div>
-							</div>
-							<div class="recent-post cf">
-								<a href="#" class="thumb"><img src="${resource(dir: 'img', file: 'dummies/54x54.gif')}"/></a>
-								<div class="post-head">
-									<a href="#">Pellentesque habitant morbi senectus</a><span> March 12, 2011</span>
-								</div>
-							</div>
-							<div class="recent-post cf">
-								<a href="#" class="thumb"><img src="${resource(dir: 'img', file: 'dummies/54x54.gif')}"/></a>
-								<div class="post-head">
-									<a href="#">Pellentesque habitant morbi senectus</a><span> March 12, 2011</span>
-								</div>
-							</div>
+
 						</div>
 					</li>
 					
@@ -114,7 +98,7 @@
 				
 				<!-- bottom -->
 				<div class="footer-bottom">
-					<div class="left">by <a href="http://luiszuno.com" >luiszuno.com</a></div>
+					<div class="left">2014 Hubtangle, all rights reserved. Template design: <a href="http://luiszuno.com" >luiszuno.com</a></div>
 						<ul id="social-bar" class="cf sb">
 							<li><a href="http://www.facebook.com"  title="Become a fan" class="facebook">Facebbok</a></li>
 							<li><a href="http://www.twitter.com" title="Follow my tweets" class="twitter"></a></li>

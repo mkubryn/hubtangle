@@ -1,7 +1,10 @@
 package net.hubtangle
 
+import org.slf4j.LoggerFactory
+
 class HubTagLib {
     static namespace = "sec"
+    private static log = LoggerFactory.getLogger(this)
 
     def hubService
 
@@ -13,7 +16,15 @@ class HubTagLib {
     def ifUserCanPostOnHub = { attrs, body ->
         String hubId = getHubId(attrs)
 
-        if (hubService.canPostOnHub(Long.parseLong(hubId))) {
+        if (securityAware { hubService.canPostOnHub(Long.parseLong(hubId)) }) {
+            out << body()
+        }
+    }
+
+    def ifUserIsHubModerator = { attrs, body ->
+        String hubId = getHubId(attrs)
+
+        if (securityAware { hubService.canModerateHub(Long.parseLong(hubId)) }) {
             out << body()
         }
     }
@@ -21,7 +32,7 @@ class HubTagLib {
     def ifUserIsSubscribingHub = { attrs, body ->
         def hubId = getHubId(attrs)
 
-        if (hubService.isSubscribingHub(hubId)) {
+        if (securityAware { hubService.isSubscribingHub(hubId) }) {
             out << body()
         }
     }
@@ -29,7 +40,7 @@ class HubTagLib {
     def ifUserIsNotSubscribingHub = { attrs, body ->
         def hubId = getHubId(attrs)
 
-        if (!hubService.isSubscribingHub(hubId)) {
+        if ( securityAware {  !hubService.isSubscribingHub(hubId) }) {
             out << body()
         }
     }
@@ -40,5 +51,14 @@ class HubTagLib {
             throw new AssertionError("You must provide hubId parameter")
         }
         hubId as Long
+    }
+
+    private def securityAware = { Closure func ->
+        try {
+            return func()
+        } catch (Exception e) {
+            log.debug 'Exception while accessing service: ', e
+            return false
+        }
     }
 }

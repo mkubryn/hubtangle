@@ -43,7 +43,7 @@
 
                 <g:each in="${lastEntries}" var="entry">
                     <figure class="${entry.hub.getSignature()}">
-                        <a href="hub/${entry.hub.id}" class="thumb">
+                        <a href="hub/${entry.hub.id}#highlight-${entry.id}" class="thumb">
 
                             <g:if test="${entry.metaClass.getMetaProperty('dsFileId')}">
                                 <g:if test="${entry.dsFileId}">

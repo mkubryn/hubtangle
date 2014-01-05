@@ -27,7 +27,7 @@ class DsTagLib {
 	private createImgTag(name, idnetifier) {
 		def sb = new StringBuilder()
 		
-		def downloadUrl = grailsApplication.config.ht.cluster.dataserver.uri << "/r/download/"
+		def downloadUrl = request.contextPath << "/download/"
 
         if(".test_photo.png" == idnetifier) {
             //FIXME remove generating random files from dsTaglib
@@ -48,7 +48,7 @@ class DsTagLib {
     private createPrettyImgTag(name, idnetifier) {
         def sb = new StringBuilder()
 
-        def downloadUrl = grailsApplication.config.ht.cluster.dataserver.uri << "/r/download/"
+        def downloadUrl = request.contextPath << "/download/"
 
         if(".test_photo.png" == idnetifier) {
             //FIXME remove generating random files from dsTaglib

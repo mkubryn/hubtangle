@@ -9,6 +9,7 @@ import net.hubtangle.entry.PostEntry;
 import net.hubtangle.entry.QuoteEntry;
 import net.hubtangle.entry.VideoEntry
 import net.hubtangle.entry.Comment
+import net.hubtangle.user.HUser
 
 class BootStrap {
 
@@ -18,7 +19,12 @@ class BootStrap {
     def relationService
 	
     def init = { servletContext ->
-		
+
+
+        if(HUser.count() > 0) {
+            return
+        }
+
 		/*
 		 * Test users and security
 		 */
@@ -101,8 +107,8 @@ class BootStrap {
 
         relationService.createRelation(Relations.SUBSCRIPTION, hub1.id, users.first().id)
         relationService.createRelation(Relations.SUBSCRIPTION, hub2.id, users.first().id)
-        relationService.createRelation(Relations.WRITABLE, hub1.id, users.first().id)
-        relationService.createRelation(Relations.WRITABLE, hub2.id, users.first().id)
+        relationService.createRelation(Relations.WRITE, hub1.id, users.first().id)
+        relationService.createRelation(Relations.WRITE, hub2.id, users.first().id)
 
         println "bootstrap() done."
     }

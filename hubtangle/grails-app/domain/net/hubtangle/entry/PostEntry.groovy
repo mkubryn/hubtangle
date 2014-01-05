@@ -21,7 +21,7 @@ class PostEntry extends Entry {
     Long dsFileId
 	
     static constraints = {
-		content size: 0..3000
+		content size: 0..10000
         dsFileId nullable: true
     }
 

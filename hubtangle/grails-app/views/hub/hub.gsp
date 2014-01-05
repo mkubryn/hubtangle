@@ -25,6 +25,12 @@
         <!-- posts list -->
     <div id="posts-list" class="cf">
 
+        <g:if test="${entries.size() == 0}">
+            <div id="emptyHubBox">
+                <h3>This hub is empty.</h3>
+            </div>
+        </g:if>
+
     <!-- Render each entry -->
         <g:each in="${entries}" var="e">
             <div id="highlight-${e.id}"
@@ -59,10 +65,10 @@
                 <h4>Actions</h4>
                 <sec:ifUserCanPostOnHub hubId="${hub.id}">
                     <div class="hubFeatureButton">
-                        <a href="/hubtangle/publish/entry?hub=${hub.id}">
+                        <a href="${request.contextPath}/publish/entry?hub=${hub.id}">
                             <img alt="createpost"
                                  src="${resource(dir: 'img', file: 'mono-icons/linedpaperplus32.png')}"/>
-                            Add new entry
+                            Add something
                         </a>
                     </div>
                 </sec:ifUserCanPostOnHub>
@@ -85,13 +91,15 @@
                     </div>
                 </sec:ifUserIsSubscribingHub>
 
-                <div class="hubFeatureButton">
-                    <a href="#">
-                        <img alt="subscribeRss" src="${resource(dir: 'img', file: 'mono-icons/rss32.png')}"/>
-                        RSS
-                    </a>
-                </div>
-                <h4></h4>
+                <sec:ifUserIsHubModerator hubId="${hub.id}">
+                    <div class="hubFeatureButton">
+                        <a href="moderate/${hub.id}">
+                            <img alt="manage permissions"
+                                 src="${resource(dir: 'img', file: 'mono-icons/users32.png')}"/>
+                            Manage
+                        </a>
+                    </div>
+                </sec:ifUserIsHubModerator>
             </li>
 
             <li class="block">

@@ -19,7 +19,7 @@ class Hub implements Serializable {
     @Indexed
 	String title
 
-	/**
+	/**             <
 	 * Text describing this {@link Hub}.
 	 */
     @Indexed

@@ -20,13 +20,13 @@ public enum Relations {
      * Can read
      * Is readable by
      */
-    READABLE,
+    READ,
 
     /**
      * Can write
      * Is writable
      */
-    WRITABLE,
+    WRITE,
 
     /**
      * Has tag
@@ -34,4 +34,9 @@ public enum Relations {
      */
     TAG,
 
+    /**
+     * Is a member of
+     * Has a member
+     */
+    MEMBER,
 }

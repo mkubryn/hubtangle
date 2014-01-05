@@ -16,8 +16,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 class HubController {
+    private static final log = LoggerFactory.getLogger(this)
 
     def hubService
+    def springSecurityService
     def tagService
 
     def index() { }
@@ -75,6 +77,18 @@ class HubController {
         hubService.unsubscribeHub(params.id as Long)
         flash.message = 'Hub unsubscribed!'
         chain(action: 'hub', params: [hubId: params.id])
+    }
+
+    @Secured(['ROLE_USER'])
+    def manage() {
+        if(!hubService.canModerateHub(params.id as Long)) {
+            log.warn "[SEC] Attempt to manage hub by user which is not it's moderator. " +
+                    "User id ${springSecurityService.getCurrentUser().id}, Hub id: ${params.id}"
+            response.sendError(HttpServletResponse.SC_FORBIDDEN)
+            return
+        }
+
+
     }
 
     private countEntriesInHub(hub) {

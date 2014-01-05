@@ -50,24 +50,23 @@ px      68    160    252    344    436    528    620    712    804    896    */
 -----------------------------------------------------------------
 cols    1     2      3      4      5      6      7      8
 px      68    160    252    344    436    528    620    712    */
-@media only screen and (min-width: 768px) and (max-width: 991px) {
+@media only screen and (min-width: 768px) and (max-width: 1200px) {
     /* GENERAL TABLET ----------------------------------------------------*/
     .wrapper {
         width: 712px;
     }
 
     .form-wrapper {
-        margin: 110px auto 20px 180px;
-        width: 300px;
-    }
-
-    .form-wrapper input {
-        width: 180px;
+        margin: 0px auto 20px 120px;
     }
 
     #openSearchBox {
         padding-left: 158px;
         padding-bottom: 20px
+    }
+
+    #openSearchBoxLink-image {
+        padding-left: 150px;
     }
 
     /* NAV TABLET ----------------------------------------------------*/
@@ -264,7 +263,7 @@ px      68    160    252    */
     }
 
     .tightWrapper {
-        width: 282px;
+        width: 260px;
     }
 
     .form-wrapper {
@@ -282,6 +281,15 @@ px      68    160    252    */
 
     .uploadr .files {
         display: none;
+    }
+
+    #welcomeLoginBox #login {
+        margin: 0 0;
+        width: 250px;
+    }
+
+    #welcomeLoginBox input {
+        width: 90% !important;
     }
 
     /* LOGO MOBILE ----------------------------------------------------*/
@@ -554,6 +562,32 @@ px      68    160    252    344    436    */
 @media only screen and (min-width: 480px) and (max-width: 767px) {
     .wrapper {
         width: 436px;
+    }
+
+    .wrapper {
+        width: 450px;
+    }
+
+    .tightWrapper {
+        width: 450px;
+    }
+
+    .form-wrapper {
+        margin: 7px auto 16px -20px;
+        width: 370px;
+    }
+
+    .form-wrapper input {
+        width: 288px;
+    }
+
+    .form-wrapper button {
+        width: 72px;
+    }
+
+    #openSearchBoxLink-image {
+        padding-left: 180px;
+        padding-bottom: 10px;
     }
 
     /* LOGO WIDE MOBILE ----------------------------------------------------*/

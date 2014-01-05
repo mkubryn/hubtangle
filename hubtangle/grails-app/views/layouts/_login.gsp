@@ -4,7 +4,7 @@
 
         <h2><span class="fontawesome-lock"></span>Please login or register</h2>
 
-        <form action="/hubtangle/j_spring_security_check" method="POST">
+        <form action="${request.contextPath}/j_spring_security_check" method="POST">
             <fieldset>
 
                 <p><label for="userLogin">Your login</label></p>

@@ -28,7 +28,7 @@
                 </div>
 
 				<uploadr:add controller="upload" action="upload" name="imageUploadr" fileselect="Click to choose or drag.."
-					direction="up" maxVisible="3" unsupported="/hubtangle/upload/warning" downloadable="false" viewable="false"
+					direction="up" maxVisible="3" unsupported="${request.contextPath}/upload/warning" downloadable="false" viewable="false"
 					model="[]" allowedExtensions="png,jpg,gif,jpeg">
 
                     <uploadr:onSuccess>

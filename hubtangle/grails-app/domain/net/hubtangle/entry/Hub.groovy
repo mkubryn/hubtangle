@@ -14,23 +14,29 @@ import net.hubtangle.user.HUser
 class Hub implements Serializable {
 
 	/**
-	 * Name of this {@link Hub}.
+	 * Name of this hub
 	 */
     @Indexed
 	String title
 
-	/**             <
-	 * Text describing this {@link Hub}.
+	/**
+	 * Text describing this hub
 	 */
     @Indexed
 	String description
 
 	/**
-	 * This {@link Hub} creation date
+	 * This hub creation date
 	 */
     @Indexed
 	Date dateCreated
-	
+
+    /**
+     * Says if this hub is public
+     */
+    boolean isPublic = true
+
+
 	/**
 	 * {@link HUser} who created this {@link Hub}
 	 */

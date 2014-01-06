@@ -27,16 +27,9 @@ class HubController {
 	/**
 	 * Handles show particular {@link Hub} requests
 	 */
-	def hub() {
-		def hub = Hub.get(asLong(params.hubId))
-        if(!hub) {
-            log.info("[SEC] Attempt to obtain not existing hub with id=${params.hubId}")
+	def hub(Long hubId, Integer page) {
+		def hub = hubService.getHub(hubId)
 
-            response.sendError(HttpServletResponse.SC_NOT_FOUND)
-            return
-        }
-
-        def page = asInteger(params.page)
         if(!page || page <= 0){
             page = 1
         }
@@ -66,32 +59,32 @@ class HubController {
 	}
 
     @Secured(['ROLE_USER'])
-    def subscribe() {
-        hubService.subscribeHub(params.id as Long)
+    def subscribe(Long id) {
+        hubService.subscribeHub(id)
         flash.message = 'Hub subscribed!'
-        chain(action: 'hub', params: [hubId: params.id])
+
+        chain(action: 'hub', params: [hubId: id])
     }
 
     @Secured(['ROLE_USER'])
-    def unsubscribe() {
-        hubService.unsubscribeHub(params.id as Long)
+    def unsubscribe(Long id) {
+        hubService.unsubscribeHub(id)
         flash.message = 'Hub unsubscribed!'
-        chain(action: 'hub', params: [hubId: params.id])
+
+        chain(action: 'hub', params: [hubId: id])
     }
 
     @Secured(['ROLE_USER'])
-    def manage() {
-        if(!hubService.canModerateHub(params.id as Long)) {
+    def manage(Long id) {
+        if(!hubService.canModerateHub(id)) {
             log.warn "[SEC] Attempt to manage hub by user which is not it's moderator. " +
                     "User id ${springSecurityService.getCurrentUser().id}, Hub id: ${params.id}"
             response.sendError(HttpServletResponse.SC_FORBIDDEN)
             return
         }
-
-
     }
 
-    private countEntriesInHub(hub) {
+    private Long countEntriesInHub(Hub hub) {
         Entry.countByHub(hub)
     }
 }

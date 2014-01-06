@@ -28,24 +28,27 @@
                 </div>
 
                 <g:formRemote id="publishForm" name="publishForm"
-                              url="[controller: 'publish', action: 'saveEntry', id: hubId]"
+                              url="[controller: 'publish', action: 'saveImageEntry', id: hubId]"
                               update="ajaxResponse">
-
-                    <!-- Target entry type -->
-                    <input type="hidden" name="type" value="image"/>
 
                     <layout:include template="imageUploadBox"/>
 
                     <p>
-                        <label for="title"><g:message code="publish.entry.image.title"/></label>
+                        <label for="title">
+                            <g:message code="publish.entry.image.title"/>
+                        </label>
+
                         <input name="title" id="publish-image-title" type="text" class="form-poshytip"
                                title="Enter title"/>
                     </p>
 
                     <p>
-                        <label for="description"><g:message code="publish.entry.image.description"/></label>
+                        <label for="description">
+                            <g:message code="publish.entry.image.description"/>
+                        </label>
+
                         <textarea name="description" id="publish-image-description" rows="5" cols="20"
-                                  class="form-poshytip" title="Enter image description"></textarea>
+                                  class="form-poshytip" title="Enter image description" ></textarea>
                     </p>
 
                     <input type="submit" value="Create"/>

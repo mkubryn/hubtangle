@@ -23,17 +23,9 @@ class EntryController {
 	/**
 	 * Handles show entry requests. Please refer to UrlMappings.groovy
 	 */
-	def showEntry() {
-		def entryId = params.entryId as Long
-		def type = params.type
-		
-		if(!hubService.canViewEntry(entryId)) {
-			log.warn("[SECURITY] Access denied to entry: ${entryId}")
-			response.sendError(HttpServletResponse.SC_FORBIDDEN)
-			return
-		}
-		
-		def entry = Entry.get(entryId)
+	def showEntry(Long entryId, String type) {
+
+		def entry = hubService.getEntry(entryId)
         if(!entry) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND)
             return
@@ -72,24 +64,17 @@ class EntryController {
     }
 
     @Secured('ROLE_USER')
-    def createComment() {
-        def text = params.text
-        def entryId = params.entryId
-
+    def createComment(String text, Long entryId) {
         if(!text || !entryId) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST)
             return
         }
 
-        def entry = Entry.get(entryId)
-        if(!entry) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST)
-            return
-        }
+        // FIXME - bad design - comments should be saved in service!
 
+        def entry = hubService.getEntry(entryId)
         def comment = new Comment(author: springSecurityService.getCurrentUser(), dateCreated: new Date(),
                 content: text, entry: entry)
-
         comment.save(failOnError: true)
 
         render (template: '/layouts/comments/single_comment', model: [comment: comment])

@@ -30,7 +30,7 @@
                 </div>
 
                 <g:formRemote id="publishForm" name="publishForm"
-                              url="[controller: 'publish', action: 'saveEntry', id: hubId]"
+                              url="[controller: 'publish', action: 'saveLinkEntry', id: hubId]"
                               update="createPostRespone">
 
                     <!-- Target entry type -->

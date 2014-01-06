@@ -27,11 +27,8 @@
 						<!-- Dynamic content -->
 					</div>
 					
-					<g:formRemote id="publishForm" name="publishForm" url="[controller: 'publish', action:'saveEntry', id: hubId]" 
+					<g:formRemote id="publishForm" name="publishForm" url="[controller: 'publish', action:'saveVideoEntry', id: hubId]"
 						update="createVideoRespone" >
-					
-						<!-- Target entry type -->
-						<input type="hidden" name="type" value="video" />
 					
 						<p>
 							<label for="publish-video-title" ><g:message code="publish.entry.video.title"/></label>

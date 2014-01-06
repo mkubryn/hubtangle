@@ -31,11 +31,8 @@
                 </div>
 
                 <g:formRemote id="publishForm" class="tinymce-form" name="publishForm"
-                              url="[controller: 'publish', action: 'saveEntry', id: hubId]"
+                              url="[controller: 'publish', action: 'savePostEntry', id: hubId]"
                               update="createPostRespone">
-
-                    <!-- Target entry type -->
-                    <input type="hidden" name="type" value="post"/>
 
                     <layout:include template="imageUploadBox" model="${[maxVisible: 1]}"/>
 

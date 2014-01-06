@@ -71,10 +71,7 @@
         		
         		<ul>
 	        		<li class="block">
-		        		<h4>Actions</h4>
-                        <img alt="edit" src="${resource(dir: 'img', file: 'mono-icons/notepencil32.png')}"/>
-                        <img alt="edit" src="${resource(dir: 'img', file: 'mono-icons/usersblock32.png')}"/>
-                        <img alt="edit" src="${resource(dir: 'img', file: 'mono-icons/heart32.png')}"/>
+		        		<layout:include template="entry/entryActions" model="[entry: entry, type: type]"/>
 					</li>
 
 	        		<li class="block">

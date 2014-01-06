@@ -33,7 +33,7 @@ class HubService {
     def Entry getEntry(Long entryId) {
         def entry = Entry.get(entryId)
         if(!entry) {
-            throw new IllegalArgumentException('No entry with id ' + entryId)
+            return null
         }
 
         if(!canReadHub(entry.hub)) {
@@ -79,6 +79,16 @@ class HubService {
         entry
     }
 
+    def boolean deleteEntry(Long entryId) {
+        if(!canEditEntry(entryId)) {
+            throw AccessDeniedException('[SEC] User ${getCurrentUserId(false)} tried to delete entry ' +
+                    '${entryId} wihtout permission!')
+        }
+
+        Entry.get(entryId).delete()
+        true
+    }
+
     def subscribeHub(Long hubId) {
         def hub = getHub(hubId)
 
@@ -106,7 +116,7 @@ class HubService {
         if(!entryId) {
             return true
         }
-        Entry.get(entryId)?.author?.id == getCurrentUserId()
+        getEntry(entryId)?.author?.id == getCurrentUserId()
     }
 
     def canModerateHub(Long hubId) {

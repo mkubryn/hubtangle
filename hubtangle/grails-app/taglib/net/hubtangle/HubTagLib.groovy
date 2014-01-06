@@ -45,9 +45,25 @@ class HubTagLib {
         }
     }
 
+    def ifUserCanEditEntry = { attrs, body ->
+        def entryId = getEntryId(attrs)
+
+        if ( securityAware { hubService.canEditEntry(entryId) }) {
+            out << body()
+        }
+    }
+
+    private getEntryId(attrs) {
+        String entryId = attrs.entryId
+        if (!entryId) {
+            throw new AssertionError("You must provide entryId parameter")
+        }
+        entryId as Long
+    }
+
     private getHubId(attrs) {
         String hubId = attrs.hubId
-        if (!attrs) {
+        if (!hubId) {
             throw new AssertionError("You must provide hubId parameter")
         }
         hubId as Long

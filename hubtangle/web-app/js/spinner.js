@@ -1,5 +1,5 @@
 	function showSpinner(elementId) {
-		$("#" + elementId).html("<img src='/hubtangle/img/spinner.gif'/>");
+		$("#" + elementId).html("<img src='/img/spinner.gif'/>");
 	}
 
     function hideSpinner(elementId) {

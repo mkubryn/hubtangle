@@ -65,11 +65,11 @@
                 <h4>Actions</h4>
                 <sec:ifUserCanPostOnHub hubId="${hub.id}">
                     <div class="hubFeatureButton">
-                        <a href="${request.contextPath}/publish/entry?hub=${hub.id}">
+                        <misc:link loaction="publish/entry?hub=${hub.id}">
                             <img alt="createpost"
                                  src="${resource(dir: 'img', file: 'mono-icons/linedpaperplus32.png')}"/>
                             Add something
-                        </a>
+                        </misc:link>
                     </div>
                 </sec:ifUserCanPostOnHub>
 

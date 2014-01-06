@@ -31,7 +31,9 @@
                               url="[controller: 'publish', action: 'saveImageEntry', id: hubId]"
                               update="ajaxResponse">
 
-                    <layout:include template="imageUploadBox"/>
+                    <layout:include template="imageUploadBox" model="[dsFileId: command.dsFileId]"/>
+
+                    <input type="hidden" name="entityId" value="${command.entityId}" />
 
                     <p>
                         <label for="title">
@@ -39,7 +41,7 @@
                         </label>
 
                         <input name="title" id="publish-image-title" type="text" class="form-poshytip"
-                               title="Enter title"/>
+                               title="Enter title" value="${command.title}"/>
                     </p>
 
                     <p>
@@ -48,7 +50,7 @@
                         </label>
 
                         <textarea name="description" id="publish-image-description" rows="5" cols="20"
-                                  class="form-poshytip" title="Enter image description" ></textarea>
+                                  class="form-poshytip" title="Enter image description" >${command.description}</textarea>
                     </p>
 
                     <input type="submit" value="Create"/>

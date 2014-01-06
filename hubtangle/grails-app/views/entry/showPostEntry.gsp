@@ -69,6 +69,11 @@
             </div>
             <!-- ENDS project box -->
 
+            <div>
+                <layout:include template="entry/entryActions" model="[entry: entry, type: type]"/>
+            </div>
+
+
             <layout:include template="comments/entry_comments_ajax"
                             model="${[entry: entry, commentsCount: commentsCount]}"/>
 

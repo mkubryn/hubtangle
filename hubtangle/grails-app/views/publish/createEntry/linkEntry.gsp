@@ -33,24 +33,24 @@
                               url="[controller: 'publish', action: 'saveLinkEntry', id: hubId]"
                               update="createPostRespone">
 
-                    <!-- Target entry type -->
-                    <input type="hidden" name="type" value="link"/>
+                    <input type="hidden" name="entityId" value="${command.entityId}" />
 
                     <p>
                         <label for="title"><g:message code="publish.entry.post.title"/></label>
                         <input name="title" id="publish-post-title" type="text" class="form-poshytip"
-                               title="Enter title"/>
+                               title="Enter title" value="${command.title}"/>
                     </p>
 
                     <p>
                         <label for="description"><g:message code="publish.entry.post.description"/></label>
                         <input name="description" id="publish-post-description" type="text" class="form-poshytip"
-                               title="Enter description"></input>
+                               title="Enter description" value="${command.description}"/>
                     </p>
 
                     <p>
                         <label for="link"><g:message code="publish.entry.link"/></label>
-                        <input name="url" id="publish-post-link" type="text" class="form-poshytip" title="Enter link"/>
+                        <input name="url" id="publish-post-link" type="text" class="form-poshytip"
+                               title="Enter link" value="${command.url}"/>
                     </p>
 
                     <input type="submit" value="Create"/>

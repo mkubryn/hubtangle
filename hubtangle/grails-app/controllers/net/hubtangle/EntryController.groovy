@@ -39,12 +39,21 @@ class EntryController {
 
         def commentsCount = Comment.countByEntry(entry)
 		
-		render (view: "show${type}Entry", model: [entry: entry, commentsCount: commentsCount])
+		render (view: "show${type}Entry", model: [entry: entry, commentsCount: commentsCount,
+                type: type.toLowerCase()])
 	}
 
-    def getComments_ajax() {
-        def entryId = RequestHelper.asLong(params.id)
-        def offset = RequestHelper.asInteger(params.offset)
+    @Secured('ROLE_USER')
+    def deleteEntry(Long id) {
+        hubService.deleteEntry(id)
+
+        flash.message = 'Entry has been removed!'
+        redirect([controller: 'home', action: 'index'])
+    }
+
+    @Secured('ROLE_USER')
+    def getComments_ajax(Long id, Integer offset) {
+        def entryId = id
         def batchSize = 2
 
         if(!entryId) {

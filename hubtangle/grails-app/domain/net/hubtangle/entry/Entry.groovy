@@ -50,8 +50,7 @@ abstract class Entry implements Comparable<Entry>, Serializable {
 	static belongsTo = [author: HUser, hub: Hub]
 	
 	static constraints = {
-		description (nullable: true, size: 0..300 )
-		title (nullable: true) //FIXME - title shuldn't be nullable
+		description (nullable: true, size: 0..1000 )
     }
 	
 	static mapping = {

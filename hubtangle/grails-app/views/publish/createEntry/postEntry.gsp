@@ -34,24 +34,26 @@
                               url="[controller: 'publish', action: 'savePostEntry', id: hubId]"
                               update="createPostRespone">
 
-                    <layout:include template="imageUploadBox" model="${[maxVisible: 1]}"/>
+                    <layout:include template="imageUploadBox" model="${[maxVisible: 1, dsFileId: command.dsFileId]}"/>
+
+                    <input type="hidden" name="entityId" value="${command.entityId}" />
 
                     <p>
                         <label for="title"><g:message code="publish.entry.post.title"/></label>
                         <input name="title" id="publish-post-title" type="text" class="form-poshytip"
-                               title="Enter title"/>
+                               title="Enter title" value="${command.title}"/>
                     </p>
 
                     <p>
                         <label for="description"><g:message code="publish.entry.post.description"/> </label>
                     <input name="description" id="publish-post-description" type="text" class="form-poshytip"
-                           title="Enter description"> </input>
+                           title="Enter description" value="${command.description}"> </input>
 						</p>
 
                     <p>
                         <label for="content"><g:message code="publish.entry.post.content"/></label>
                         <textarea name="content" id="content" rows="5" cols="20" class="form-poshytip"
-                                  title="Enter content"></textarea>
+                                  title="Enter content">${command.content}</textarea>
                     </p>
 
                     <input type="submit" value="Create" onclick="submitForm()"/>

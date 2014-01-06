@@ -12,6 +12,16 @@
 <div id="imageUploadBox">
 
     <div id="imageUploadPreviewBox">
+
+                %{--if editing--}%
+               <g:if test="${dsFileId}">
+                    <span>
+                           <ds:img id="${dsFileId}"/>
+                            <input type="hidden" name="dsFileId" value="${dsFileId}"/>
+                        </span>
+                </g:if>
+
+
         <p/>
     </div>
 
@@ -21,7 +31,7 @@
 
         <uploadr:onSuccess>
             // add preview and hidden input with dsId
-            $('#imageUploadPreviewBox').append('<span id="'+ 'uploadrimg-'+ response.fileName + '" > <img src="'+ response.location +'" />  <input type="hidden" name="dsFileId" value="' + response.dsId + '" /> </span>');
+            $('#imageUploadPreviewBox').html('<span id="'+ 'uploadrimg-'+ response.fileName + '" > <img src="'+ response.location +'" />  <input type="hidden" name="dsFileId" value="' + response.dsId + '" /> </span>');
 
             // callback when done
             callback();

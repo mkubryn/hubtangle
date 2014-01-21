@@ -1,4 +1,4 @@
 hubtangle
 =========
 
-Hubtangle Network
+Hubtangle Platform

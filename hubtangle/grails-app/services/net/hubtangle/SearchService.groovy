@@ -1,4 +1,4 @@
-package net.hubtangle.search
+package net.hubtangle
 
 import grails.converters.JSON
 import grails.transaction.Transactional

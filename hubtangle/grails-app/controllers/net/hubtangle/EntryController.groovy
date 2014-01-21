@@ -3,12 +3,8 @@ package net.hubtangle
 import grails.plugins.springsecurity.Secured
 import grails.plugins.springsecurity.SpringSecurityService
 import net.hubtangle.entry.Comment
-import net.hubtangle.helpers.RequestHelper;
 
-import javax.servlet.http.HttpServletResponse;
-
-
-import net.hubtangle.entry.Entry
+import javax.servlet.http.HttpServletResponse
 
 /**
  * Controls entries and stuff related to them

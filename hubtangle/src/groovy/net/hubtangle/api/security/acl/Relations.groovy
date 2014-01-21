@@ -4,6 +4,13 @@ package net.hubtangle.api.security.acl
  * Enumerates various relations between things in Hubtangle
  */
 public enum Relations {
+
+    /**
+     * Is administrator
+     * Is administrated by
+     */
+    ADMINISTATION,
+
     /**
      * Is subscribing
      * Is subscribed by

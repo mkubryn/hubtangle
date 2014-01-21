@@ -1,4 +1,4 @@
-package hubtangle
+package net.hubtangle
 
 import grails.transaction.Transactional
 import net.hubtangle.api.command.SearchCommand

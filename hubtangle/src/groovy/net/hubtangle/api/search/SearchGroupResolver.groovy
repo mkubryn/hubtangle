@@ -1,7 +1,6 @@
 package net.hubtangle.api.search
 
-import net.hubtangle.entry.Comment
-import net.hubtangle.entry.Hub
+import net.hubtangle.Hub
 import net.hubtangle.user.HUser
 
 /**

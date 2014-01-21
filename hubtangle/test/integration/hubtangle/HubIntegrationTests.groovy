@@ -1,7 +1,7 @@
 package hubtangle
 
 import net.hubtangle.entry.Entry;
-import net.hubtangle.entry.Hub;
+import net.hubtangle.Hub;
 import net.hubtangle.entry.LinkEntry;
 import net.hubtangle.user.HUser;
 

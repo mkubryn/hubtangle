@@ -7,7 +7,7 @@
 <h4>Actions</h4>
 <div class="actionButtons">
 
-    <sec:ifUserCanEditEntry entryId="${entry.id}">
+    <hub:ifUserCanEditEntry entryId="${entry.id}">
         <div class="hubFeatureButton">
             <misc:link loaction="publish/entry?hub=${entry.hub.id}&type=${type}&entry=${entry.id}">
                 <img alt="edit" src="${resource(dir: 'img', file: 'mono-icons/notepencil32.png')}"/>
@@ -22,7 +22,7 @@
             </misc:link>
         </div>
 
-    </sec:ifUserCanEditEntry>
+    </hub:ifUserCanEditEntry>
 
     <img alt="favourite" src="${resource(dir: 'img', file: 'mono-icons/usersblock32.png')}"/>
     <img alt="vote" src="${resource(dir: 'img', file: 'mono-icons/heart32.png')}"/>

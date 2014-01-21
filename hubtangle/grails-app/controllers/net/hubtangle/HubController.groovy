@@ -1,18 +1,10 @@
 package net.hubtangle
 
-import grails.converters.JSON
 import grails.plugins.springsecurity.Secured
-import net.hubtangle.api.security.acl.Relations
-import net.hubtangle.entry.Entry;
+import net.hubtangle.entry.Entry
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletResponse
 
-import com.sun.xml.internal.ws.transport.http.client.HttpResponseProperties;
-import static net.hubtangle.helpers.RequestHelper.*;
-
-import net.hubtangle.entry.Hub;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 class HubController {

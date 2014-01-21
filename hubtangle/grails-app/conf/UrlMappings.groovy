@@ -1,3 +1,7 @@
+import net.hubtangle.api.ModelNotFoundException
+import org.springframework.security.access.AccessDeniedException
+import org.springframework.stereotype.Controller
+
 class UrlMappings {
 
 	static mappings = {
@@ -35,7 +39,7 @@ class UrlMappings {
         "/user/hubs/$action" (controller: "user")
 
 		/*
-		 * Mappings for data server
+		 * Mappings for data server proxying
 		 */
 		"/download/$dsFileId" (controller: "download", action: "download")
 
@@ -51,7 +55,13 @@ class UrlMappings {
 		/*
 		 * Error mappings
 		 */
-		"500"(view:'/error')
+		//"500"(controller: "error", action: "error500") USE IT IN PRODUCTION!
+        "500"(view:'/error')
+
 		"403"(controller: "error", action: "error403")
-	}
+
+        "500"(controller: "error", action: "error404", exception: ModelNotFoundException)
+        "500"(controller: "error", action: "error403", exception: AccessDeniedException)
+
+    }
 }

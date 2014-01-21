@@ -2,7 +2,7 @@ import net.hubtangle.*
 import net.hubtangle.api.security.acl.Relations
 import net.hubtangle.auth.*
 import net.hubtangle.ds.*
-import net.hubtangle.entry.Hub;
+import net.hubtangle.Hub;
 import net.hubtangle.entry.ImageEntry;
 import net.hubtangle.entry.LinkEntry;
 import net.hubtangle.entry.PostEntry;

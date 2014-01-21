@@ -3,9 +3,10 @@ package net.hubtangle
 import org.slf4j.LoggerFactory
 
 class HubTagLib {
-    static namespace = "sec"
+    static namespace = "hub"
     private static log = LoggerFactory.getLogger(this)
 
+    def permissionService
     def hubService
 
     /**
@@ -16,7 +17,7 @@ class HubTagLib {
     def ifUserCanPostOnHub = { attrs, body ->
         String hubId = getHubId(attrs)
 
-        if (securityAware { hubService.canPostOnHub(Long.parseLong(hubId)) }) {
+        if (securityAware { permissionService.canPostOnHub(Long.parseLong(hubId)) }) {
             out << body()
         }
     }
@@ -24,7 +25,7 @@ class HubTagLib {
     def ifUserIsHubModerator = { attrs, body ->
         String hubId = getHubId(attrs)
 
-        if (securityAware { hubService.canModerateHub(Long.parseLong(hubId)) }) {
+        if (securityAware { permissionService.canModerateHub(Long.parseLong(hubId)) }) {
             out << body()
         }
     }
@@ -48,7 +49,15 @@ class HubTagLib {
     def ifUserCanEditEntry = { attrs, body ->
         def entryId = getEntryId(attrs)
 
-        if ( securityAware { hubService.canEditEntry(entryId) }) {
+        if ( securityAware { permissionService.canEditEntry(entryId) }) {
+            out << body()
+        }
+    }
+
+    def ifUserIsHubAdministrator = { attrs, body ->
+        def hubId = getHubId(attrs)
+
+        if (securityAware { permissionService.canAdministrateHub(hubId) }) {
             out << body()
         }
     }

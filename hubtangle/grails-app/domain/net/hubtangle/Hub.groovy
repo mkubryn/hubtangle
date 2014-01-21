@@ -1,7 +1,8 @@
-package net.hubtangle.entry
+package net.hubtangle
 
 import groovy.transform.EqualsAndHashCode
 import net.hubtangle.api.search.Indexed
+import net.hubtangle.entry.HubAccessibility
 import net.hubtangle.user.HUser
 
 /**
@@ -32,10 +33,9 @@ class Hub implements Serializable {
 	Date dateCreated
 
     /**
-     * Says if this hub is public
+     * Hub accessibility
      */
-    boolean isPublic = true
-
+    HubAccessibility accessibility = HubAccessibility.PUBLIC
 
 	/**
 	 * {@link HUser} who created this {@link Hub}

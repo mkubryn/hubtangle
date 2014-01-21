@@ -3,8 +3,6 @@ package net.hubtangle
 
 
 import grails.test.mixin.*
-import net.hubtangle.entry.Hub;
-
 import org.junit.*
 
 /**

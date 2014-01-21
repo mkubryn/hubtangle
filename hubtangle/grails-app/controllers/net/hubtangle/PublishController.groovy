@@ -2,8 +2,8 @@ package net.hubtangle
 
 import grails.plugins.springsecurity.Secured
 import net.hubtangle.api.command.CreateEntryCommand
+import net.hubtangle.api.command.CreateHubCommand
 import net.hubtangle.entry.Entry
-import net.hubtangle.entry.Hub
 import net.hubtangle.entry.ImageEntry
 import net.hubtangle.entry.LinkEntry
 import net.hubtangle.entry.PostEntry
@@ -13,7 +13,7 @@ import net.hubtangle.utils.ControllerUtils
 import org.slf4j.LoggerFactory
 
 import static javax.servlet.http.HttpServletResponse.SC_BAD_REQUEST
-import static net.hubtangle.helpers.RequestHelper.asLong;
+
 /**
  * Controller responsible for publishing content in hubtangle
  * @author mkubryn
@@ -67,8 +67,10 @@ class PublishController {
 	}
 
     @Secured(['ROLE_USER'])
-    def saveHub() {
-        def hub = new Hub(description: params.description, title: params.title, dateCreated: new Date())
+    def saveHub(CreateHubCommand command) {
+        def hub = new Hub()
+
+        CommandUtils.copyProperties(command, hub)
 
         hub = hubService.saveHub(hub)
 

@@ -1,10 +1,9 @@
 package net.hubtangle.helper
 
-import net.hubtangle.entry.Hub
+import net.hubtangle.Hub
 import net.hubtangle.entry.ImageEntry
 import net.hubtangle.entry.LinkEntry
 import net.hubtangle.entry.PostEntry
-import net.hubtangle.entry.QuoteEntry
 import net.hubtangle.entry.VideoEntry
 import net.hubtangle.user.HUser
 

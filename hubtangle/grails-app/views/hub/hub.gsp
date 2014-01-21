@@ -63,7 +63,7 @@
 
             <li class="block">
                 <h4>Actions</h4>
-                <sec:ifUserCanPostOnHub hubId="${hub.id}">
+                <hub:ifUserCanPostOnHub hubId="${hub.id}">
                     <div class="hubFeatureButton">
                         <misc:link loaction="publish/entry?hub=${hub.id}">
                             <img alt="createpost"
@@ -71,27 +71,27 @@
                             Add something
                         </misc:link>
                     </div>
-                </sec:ifUserCanPostOnHub>
+                </hub:ifUserCanPostOnHub>
 
-                <sec:ifUserIsNotSubscribingHub hubId="${hub.id}">
+                <hub:ifUserIsNotSubscribingHub hubId="${hub.id}">
                     <div class="hubFeatureButton">
                         <a href="subscribe/${hub.id}/">
                             <img alt="subscribe this hub" src="${resource(dir: 'img', file: 'mono-icons/plus32.png')}"/>
                             Subscribe this hub
                         </a>
                     </div>
-                </sec:ifUserIsNotSubscribingHub>
+                </hub:ifUserIsNotSubscribingHub>
 
-                <sec:ifUserIsSubscribingHub hubId="${hub.id}">
+                <hub:ifUserIsSubscribingHub hubId="${hub.id}">
                     <div class="hubFeatureButton">
                         <a href="unsubscribe/${hub.id}/">
                             <img alt="unsubscribe this hub" src="${resource(dir: 'img', file: 'mono-icons/minus32.png')}"/>
                             Unsubscribe
                         </a>
                     </div>
-                </sec:ifUserIsSubscribingHub>
+                </hub:ifUserIsSubscribingHub>
 
-                <sec:ifUserIsHubModerator hubId="${hub.id}">
+                <hub:ifUserIsHubModerator hubId="${hub.id}">
                     <div class="hubFeatureButton">
                         <a href="moderate/${hub.id}">
                             <img alt="manage permissions"
@@ -99,7 +99,16 @@
                             Manage
                         </a>
                     </div>
-                </sec:ifUserIsHubModerator>
+                </hub:ifUserIsHubModerator>
+
+                <hub:ifUserIsHubAdministrator hubId="${hub.id}">
+                    <div class="hubFeatureButton">
+                        <misc:link loaction="publish/hub/${hub.id}">
+                            <misc:img file="mono-icons/notepencil32.png" alt="edit"/>
+                            Edit
+                        </misc:link>
+                    </div>
+                </hub:ifUserIsHubAdministrator>
             </li>
 
             <li class="block">

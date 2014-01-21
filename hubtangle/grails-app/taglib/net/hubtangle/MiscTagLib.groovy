@@ -10,7 +10,7 @@ class MiscTagLib {
         def location = attrs.loaction
         def alt = attrs.alt
 
-        out << "<a href='${request.contextPath}/${location}' alt='${alt}' />"
+        out << "<a href='${request.contextPath}/${location}' alt='${alt}'>"
         out << body()
         out << "</a>"
     }
@@ -38,5 +38,17 @@ class MiscTagLib {
                   <img src="${request.contextPath}/img/yt-play64.png" style="position: absolute; top: 60px; left: 115px;"/>
                 </div>
 """
+    }
+
+    /**
+     * Write out an HTML <img> tag using resource processing for the image
+     */
+    def img = { attrs, body ->
+        def location = attrs.file
+        def alt = attrs.alt
+
+        out << "<img src='${request.contextPath}/img/${location}' alt='${alt}' />"
+        out << body()
+        out << "</a>"
     }
 }

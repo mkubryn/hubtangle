@@ -1,4 +1,4 @@
-package hubtangle
+package net.hubtangle
 
 import net.hubtangle.api.command.SearchCommand
 

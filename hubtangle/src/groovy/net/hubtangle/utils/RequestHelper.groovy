@@ -1,4 +1,4 @@
-package net.hubtangle.helpers
+package net.hubtangle.utils
 
 import org.codehaus.groovy.grails.web.pages.discovery.GrailsConventionGroovyPageLocator;
 

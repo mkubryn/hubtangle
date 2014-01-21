@@ -1,6 +1,7 @@
 package net.hubtangle.entry
 
 import groovy.transform.EqualsAndHashCode
+import net.hubtangle.Hub
 import net.hubtangle.api.search.Indexed
 
 import java.text.SimpleDateFormat
@@ -17,7 +18,7 @@ import net.hubtangle.user.HUser;
 abstract class Entry implements Comparable<Entry>, Serializable {
 
 	/**
-	 * Author of this antry
+	 * Author of this entry
 	 */
 	HUser author
 	
@@ -58,7 +59,10 @@ abstract class Entry implements Comparable<Entry>, Serializable {
 		 * Each subclass should have it's own sub-table
 		 */
 		tablePerHierarchy false
+
         dateCreated index: 'entry_date_created_idx'
+        hub index: 'entry_hub_idx'
+        author index: 'entry_author_idx'
 	}
 	
 	@Transient

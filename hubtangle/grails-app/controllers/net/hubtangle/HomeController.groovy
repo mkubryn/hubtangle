@@ -3,8 +3,7 @@ package net.hubtangle
 import grails.plugins.springsecurity.Secured
 import net.hubtable.*
 import net.hubtangle.api.security.acl.Relations
-import net.hubtangle.entry.Entry;
-import net.hubtangle.entry.Hub
+import net.hubtangle.entry.Entry
 import org.slf4j.LoggerFactory;
 
 /**

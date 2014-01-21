@@ -1,14 +1,13 @@
-package net.hubtangle.search
+package net.hubtangle
 
 import grails.test.mixin.TestFor
-import net.hubtangle.SearchService
 import spock.lang.Specification
 
 /**
  * See the API for {@link grails.test.mixin.services.ServiceUnitTestMixin} for usage instructions
  */
-@TestFor(SearchService)
-class SearchServiceSpec extends Specification {
+@TestFor(PermissionService)
+class PermissionServiceSpec extends Specification {
 
     def setup() {
     }

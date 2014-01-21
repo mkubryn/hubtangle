@@ -1,6 +1,7 @@
 package hubtangle
 
 import grails.test.mixin.TestFor
+import net.hubtangle.UserController
 import spock.lang.Specification
 
 /**

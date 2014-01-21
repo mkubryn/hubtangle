@@ -19,5 +19,6 @@ class Comment implements Serializable {
 
     static mapping = {
         dateCreated index: 'comment_date_created_idx'
+        entry index: 'comment_entry_idx'
     }
 }

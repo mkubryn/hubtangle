@@ -1,7 +1,4 @@
 package net.hubtangle.utils
-
-import net.hubtangle.entry.Hub
-
 /**
  * Created by mkubryn on 22.12.13.
  */

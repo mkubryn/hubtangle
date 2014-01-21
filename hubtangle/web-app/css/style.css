@@ -379,7 +379,7 @@ header .wrapper #home-slider {
 }
 #portfolio-content #project-box .entry-content {
   float: left;
-  width: 688px;
+  width: 660px;
   /* 940 - (184 + 68) - 20*/
 
   margin-bottom: 40px;
@@ -1183,4 +1183,17 @@ footer h6 {
 }
 
 #emptyHubBox {
+}
+
+.createHubForm input[type="radio"] {
+    display: none;
+}
+
+.createHubForm input[type="radio"]:checked+label {
+    color: #cb5432;
+    font-weight: bold;
+}
+
+.createHubForm label img {
+    padding-right: 10px;
 }
